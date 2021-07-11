@@ -1,0 +1,28 @@
+
+@charset "UTF-8";
+
+* {
+	margin : 0 auto;
+	padding : 0;
+	list-style-type: none;
+	}
+	
+body, html{
+	width:100%;
+}
+
+.navbar {
+	background-color: black; 
+	margin : 0;
+	
+	}
+	
+.sidebar {
+	background-color: #cee9ea; 
+	height: 100%;
+	}
+	
+.container {
+	width: 100%;
+	padding : 0;
+}

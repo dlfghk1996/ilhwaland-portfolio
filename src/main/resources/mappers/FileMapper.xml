@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+ 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="FileMapper">
+	
+	<!-- 업로드 하는 파일정보 저장 -->
+	<insert id="insertUploadFileList"  parameterType="java.util.Map">
+    INSERT INTO filedetail (file_num,original_name,file_name,filetype,filepath,register_date,readAble)
+    SELECT filedetail_SEQ.NEXTVAL as file_num, A.* 
+    FROM (
+	    <foreach collection="list" item="item" separator=" UNION ALL " index="index">
+	        SELECT #{item.original_name} as original_name,
+	        	   #{item.file_name} as file_name,
+	        	   #{item.filetype} as filetype,
+	        	   #{item.filePath} as filePath,
+	        	   SYSDATE as register_date,
+	        	   #{item.readAble} as readAble
+			FROM DUAL
+	    </foreach>
+    ) A
+	</insert>
+
+	<!-- 업로드된 파일 모두 리스트로 출력 -->
+	<select id="selectUploadFileList"  resultType="com.kim.ilhwaland.dto.FileDetail">
+		SELECT file_num, original_name, substr(original_name,0,instr(original_name,'.',1)-1) as tempFilename,filetype,TO_CHAR(register_date, 'YY-MM-DD') as register_date,readable
+		FROM filedetail 
+		ORDER BY file_num DESC
+	</select>
+	
+	<!-- 파일 정보 가져오기 -->
+	<select id="selectUploadFile"  parameterType="String" resultType="com.kim.ilhwaland.dto.FileDetail">
+		SELECT file_num,original_name,file_name,filetype,filePath, TO_CHAR(register_date, 'YYYY-MM-DD') as register_date 
+		FROM filedetail 
+		WHERE file_num = ${value}
+	</select>  
+</mapper>
