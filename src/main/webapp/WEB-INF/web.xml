@@ -7,8 +7,7 @@
 	<!-- contextConfigLocation : 공유하는 파일 위치 설정 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring/root-context.xml
-		</param-value>
+		<param-value>/WEB-INF/spring/root-context.xml, /WEB-INF/config/application-context.xml</param-value>
 	</context-param>
 	
 	<!-- 서블릿과 필터에 공유 할 수 있도록 리스너를 설정 -> root-context를 읽는다 -->
@@ -47,4 +46,15 @@
          <filter-name>encodingFilterUTF8</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    
+    <!-- HiddenHttpMethodFilter 설정 : override 하는 방식으로 Rest API 지원  -->
+    <filter>
+    	<filter-name>HiddenHttpMethodFilter</filter-name>
+    	<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>HiddenHttpMethodFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 </web-app>

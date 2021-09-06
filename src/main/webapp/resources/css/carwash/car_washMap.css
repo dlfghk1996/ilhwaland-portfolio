@@ -1,0 +1,106 @@
+@charset "UTF-8";
+
+#content {
+	padding: 10px 27px;
+	background-image: url(https://technext.github.io/scaffold/assets/img/hero-bg.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: right top;
+}
+
+.box {
+	overflow: hidden;
+    margin-top: 50px;
+}
+
+#map {
+	width: 70%;
+	float: left;
+	height:100%; 
+	position:relative; 
+	overflow:hidden; 
+	border-radius: 0px 20px 20px 0
+}
+
+.map_wrap {
+	float: left;
+    width: 65%;
+    margin-right: 20px;
+    background-color: #efef29;
+    border: 7px solid #efef29;
+    border-radius: 15px;
+}
+	
+#menu_wrap {
+	height: 485px;
+    width: 30%;
+    color: black;
+}
+
+.address_box input {
+	display: inline-block;
+    width: 80%;
+}
+
+.addressSearch_btn {
+	padding: 7px;
+}	
+
+.setCenter_btnn {
+    position: absolute;
+    right: 8px;
+    z-index: 99999;
+    padding: 10px;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    border-radius: 17px;
+    box-shadow: 5px 2px 3px 1px #7e7e78;
+}
+
+.carwash_post_wrap {
+	overflow: hidden;
+    position: relative;
+    float: left;
+    width: 30%;
+    background-color: #8ae28b8f;
+    padding: 15px 10px;
+    border-radius: 12px;
+    height: 515px;
+    border: 1px solid #61e232;
+    
+}
+
+.icon_box {
+	margin-right: 20px;
+	width: 30px;
+    float: left;
+    margin: 0 10px;
+}
+	
+.description {
+	display: block;
+	margin: 11px 0;
+	padding: 0 5px 0 0;
+	font-size: 10px;
+    line-height: 20px;
+    height: 50px;
+}
+
+dt a {
+   text-decoration: underline;
+}
+
+dt {
+	padding: 5px;
+    overflow: hidden;
+	background-color: #27b100;
+    color: white;    
+    border-radius: 30px;
+}
+
+.bloggername {
+	font-size: 8px;
+    text-align: right;
+} 
+

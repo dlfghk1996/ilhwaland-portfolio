@@ -1,5 +1,11 @@
 package com.kim.ilhwaland.dto;
 
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+
 public class Member {
 	
 	private int member_num;      // pk
@@ -9,7 +15,14 @@ public class Member {
 	private String name;         // 이름
 	private String regdate;      // 회원가입일
 	
+	@ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)  // 패치 타입 LAZY 설정(proxy)
+	@JoinColumn(name = "member_num") 
+	private Schedule schedule;
 	
+	public Member() {
+	}
+	
+	// get & set
 	public int getMember_num() {
 		return member_num;
 	}

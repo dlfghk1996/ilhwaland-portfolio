@@ -23,9 +23,12 @@
 
 	<!-- 업로드된 파일 모두 리스트로 출력 -->
 	<select id="selectUploadFileList"  resultType="com.kim.ilhwaland.dto.FileDetail">
-		SELECT file_num, original_name, substr(original_name,0,instr(original_name,'.',1)-1) as tempFilename,filetype,TO_CHAR(register_date, 'YY-MM-DD') as register_date,readable
+		SELECT rownum as rnum, a.*
+        FROM
+        (SELECT file_num, original_name, substr(original_name,0,instr(original_name,'.',1)-1) as tempFilename,filetype,TO_CHAR(register_date, 'YY-MM-DD') as register_date,readable
 		FROM filedetail 
-		ORDER BY file_num DESC
+		ORDER BY file_num)a
+        ORDER BY rnum desc
 	</select>
 	
 	<!-- 파일 정보 가져오기 -->

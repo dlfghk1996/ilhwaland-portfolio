@@ -1,0 +1,26 @@
+@charset "UTF-8";
+.note-group-image-url {
+	display :none;
+}
+
+.container {
+	font-size: 12px;
+   	width: 100%;
+}
+
+#content {
+   	height: 100%;
+   	padding: 0 5%;
+   	width: calc(100% - 275px);
+}
+
+#postContent_form {
+	padding-top :50px;
+}
+.note-editor {
+	width: 80%;
+}
+
+.form-group {
+	width: 80%;
+}

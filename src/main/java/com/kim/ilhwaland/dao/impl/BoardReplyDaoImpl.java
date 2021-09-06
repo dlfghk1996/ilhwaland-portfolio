@@ -1,4 +1,4 @@
-package com.kim.ilhwaland.dao.impl;
+ package com.kim.ilhwaland.dao.impl;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kim.ilhwaland.dao.BoardReplyDao;
 import com.kim.ilhwaland.dto.BoardReply;
+import com.kim.ilhwaland.helper.BadRequestException;
 
 @Repository
 public class BoardReplyDaoImpl implements BoardReplyDao{
@@ -15,7 +16,7 @@ public class BoardReplyDaoImpl implements BoardReplyDao{
 	@Autowired
 	SqlSession sqlSession;
 	
-	/** 댓글 등록 */
+	/** 1) 댓글 등록 */
 	@Override
 	public int setReply(BoardReply input) throws Exception {
 		int result = 0;
@@ -26,7 +27,7 @@ public class BoardReplyDaoImpl implements BoardReplyDao{
 		return result;
 	}
 
-	/** 해당 게시글 댓글 출력 */
+	/** 2) 해당 게시글 댓글 출력 */
 	@Override
 	public List<BoardReply> getReplyList(int input) throws Exception {
 		List<BoardReply> result = null;
@@ -34,29 +35,33 @@ public class BoardReplyDaoImpl implements BoardReplyDao{
 		return result;
 	}
 	
-	/** 댓글 수정 */
+	/** 3) 댓글 수정 */
 	@Override
 	public void updateReply(BoardReply input) throws Exception {
 		int result = 0;
 		result = sqlSession.update("BoardReplyMapper.updateBoardReply",input);
 		if(result == 0) {
-			throw new NullPointerException("result == 0");
+			throw new NullPointerException("댓글 수정 쿼리 시도 중 에러 발생");
 		}
 	}
 	
-	/** 댓글 삭제 */
+	/** 4) 댓글 삭제 */
 	@Override
-	public int deleteReply(int input) throws Exception {
+	public void deleteReply(BoardReply input) throws Exception {
 		int result = 0;
-		result = sqlSession.delete("BoardReplyMapper.deleteBoardReply",input);
-		return result;
+		sqlSession.delete("BoardReplyMapper.deleteBoardReply",input);
+		if(result == 0) {
+			throw new NullPointerException("댓글 삭제 쿼리 시도 중 에러 발생");
+		}
 	}
 
-	/** 댓글 비밀번호 확인  */
+	/** 5) 댓글 비밀번호 확인  */
 	@Override
-	public int replyPwCheck(BoardReply input) throws Exception {
+	public void replyPwCheck(BoardReply input) throws Exception {
 		int result = 0;
 		result = sqlSession.selectOne("BoardReplyMapper.selectReplyPassword",input);
-		return result;
+		if(result > 0) {
+			throw new BadRequestException();
+		}
 	}
 }

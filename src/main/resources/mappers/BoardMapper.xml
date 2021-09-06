@@ -9,7 +9,7 @@
 		<selectKey keyProperty="board_num" resultType="int" order="BEFORE">
 			SELECT board_SEQ.NEXTVAL AS board_num FROM DUAL
 		</selectKey>
-		INSERT INTO board VALUES(#{board_num},#{subject},#{content},null,#{writer_id},#{password},sysdate,sysdate,0,0)
+		INSERT INTO board VALUES(#{board_num},#{subject},#{content},null,#{writer_id},#{password},sysdate,sysdate,0)
 	</insert>
 	
 	<!-- 게시글 상세보기 -->
@@ -19,13 +19,32 @@
 	
 	<!-- 게시글 전체 출력 -->
 	<select id="selectBoardList" parameterType="com.kim.ilhwaland.dto.Board" resultType="com.kim.ilhwaland.dto.Board">
-	   SELECT a.* 
-	   FROM(SELECT rownum as rnum,board_num,subject,content,writer_id,TO_CHAR(register_date, 'YY-MM-DD') as register_date FROM board order by board_num desc) a 
+		SELECT a.* 
+	   	FROM 
+			(SELECT rownum as rnum, board_num,subject,content,writer_id,TO_CHAR(register_date, 'YY-MM-DD') as register_date,read_num 
+		  	 FROM board 
+			<include refid="searchSQL"/>
+			 ORDER BY board_num desc) a 
 	   WHERE a.rnum <![CDATA[>=]]> ${start} AND a.rnum <![CDATA[<=]]> ${end}
 	</select>
 	
+	<!-- sql code 조각-->
+	<sql id="searchSQL">
+		<if test= 'keyword != null &amp;&amp; !keyword.equals("")'>
+			<choose>
+				<!-- 전체 검색 -->
+		      	<when test='search_option == "all"'>
+		          	WHERE writer_id LIKE '%${keyword}%' OR subject LIKE '%${keyword}%' OR content LIKE '%${keyword}%'
+		      	</when> 
+		      	<otherwise>
+		          	WHERE ${search_option} LIKE '%${keyword}%'
+		      	</otherwise>
+	   		</choose>
+	   </if> 
+	</sql>
+	
 	<!-- 게시글 비밀번호 확인 -->
-	<select id="selectBoardPassword" resultType="com.kim.ilhwaland.dto.Board" parameterType="com.kim.ilhwaland.dto.Board">
+	<select id="selectBoardPassword" parameterType="com.kim.ilhwaland.dto.Board" resultType="com.kim.ilhwaland.dto.Board">
 		SELECT * FROM board WHERE board_num = ${board_num} AND password = ${password}   
 	</select>
 	
@@ -36,7 +55,7 @@
 	
 	<!-- 게시글 삭제 -->
 	<delete id="deleteBoard" parameterType="com.kim.ilhwaland.dto.Board">
-		DELETE FROM board WHERE board_num = ${value}
+		DELETE FROM board WHERE board_num = ${board_num}
 	</delete>
 	
 	<!-- 조회수 업데이트 -->
@@ -48,4 +67,5 @@
 	<select id="selectBoardCount" resultType="int" >
 		SELECT count(*) FROM board
 	</select>
+	
 </mapper>

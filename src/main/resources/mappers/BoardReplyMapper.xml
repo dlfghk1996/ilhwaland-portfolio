@@ -3,6 +3,7 @@
  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="BoardReplyMapper">
+	
 	<!-- 댓글 등록 -->
 	<insert id="insertBoardReply" parameterType="com.kim.ilhwaland.dto.BoardReply">
 		<selectKey keyProperty="reply_num" resultType="int" order="BEFORE">
@@ -21,13 +22,18 @@
 		UPDATE boardreply SET reply = #{reply}, reply_writer_nickname = #{reply_writer_nickname} WHERE reply_num = #{reply_num}
 	</update>
 	
-	<!-- 댓글 삭제 -->
-	<delete id="deleteBoardReply"  parameterType="int">
-		DELETE FROM boardReply WHERE board_num = ${value} 
+	<!-- 댓글 삭제 : 단일댓글 삭제 OR 복수댓글 삭제 -->
+	<delete id="deleteBoardReply" parameterType="com.kim.ilhwaland.dto.BoardReply">
+		DELETE FROM boardReply 
+		<where>
+			<if test="reply_num != 0"> reply_num = ${reply_num} </if>
+			<if test="board_num != 0"> board_num = ${board_num} </if>
+		</where>
 	</delete>
 	
 	<!-- 댓글 비밀번호 확인 -->
 	<select id="selectReplyPassword"  parameterType="com.kim.ilhwaland.dto.BoardReply" resultType="int">
 		SELECT count(*) FROM boardreply WHERE reply_num = ${reply_num} AND reply_password = ${reply_password}
 	</select>
+	
 </mapper>

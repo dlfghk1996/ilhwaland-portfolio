@@ -1,0 +1,267 @@
+@charset "UTF-8";
+
+#content {
+	padding : 0px;
+	padding-top: 20px;
+	min-width: 1240px;
+}
+
+#content_detail {
+	margin: 0;
+	padding: 10px 30px;
+	padding-left: 25px;
+}
+
+#content_detail h4 {
+	padding: 10px 0;
+    color: #710c0c;
+    font-weight: bold;
+} 
+    
+.address_box{
+	position: absolute;
+    top: 10%;
+    left: 24%;
+}
+	
+.form-group{
+	text-align: center;
+}
+	
+.form-group input {
+	width: 400px;
+    display: inline-block;
+   	padding: 25px 0;
+   	background-color: #fff;
+}
+
+.form-control[disabled], .form-control[readonly] {
+    background-color: #fff;
+}
+
+button {
+	font-weight: bold;
+}
+
+.getGeolocation_btn {
+	padding: 15px 10px;
+    background: #463d3d;
+    color: white;
+}
+
+.getAddress_btn {
+	line-height: 3;
+    background: #e2e2e2;
+    color: black;
+    font-size: 12px;
+    border: 1px solid white;
+}
+
+.weather_container {
+	height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+	
+.todayWeather_box {
+	background-color: rgb(229 225 242 / 50%);
+	margin: 0;
+    position: relative;
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+}
+
+.todayWeather {
+	position: absolute;
+    background-color: #ffffff66;
+    top: 40%;
+    left: 3%;
+    font-size: 19px;
+    color: black;
+    width: 410px;
+    padding: 10px;
+}
+
+.today_temp {
+	font-size: 50px;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+
+.todayWeather > .today_img {
+	float: left;
+    width: 50%;
+}
+	
+.todayWeather > div:first-child {
+	position: absolute;
+    top: -50px;
+    font-size: 20px;
+    font-weight: bolder;
+    color: #464646;
+    text-shadow: 1px 0px 2px #ccd0e6;
+}
+
+.todayWeather > div:last-child {
+	float: left;
+    width: 50%;
+}
+
+.todayWeather_box .today_weather_etc > div {
+	display: inline-block;
+	padding: 5px 0;
+}
+
+.today_weather_etc > .humidifier_img {
+	width: 80px;
+}
+
+.today_weather_etc > .humidifier_value {
+	display: inline-block;
+    font-weight: 800;
+    color: #f00202f2;
+    font-size: 20px;
+} 
+
+.timelineWeather_box {
+	float: right;
+    width: 22%;
+    background-color: #00000087;
+    color: white;
+    text-align: center;
+    height: 100%;
+}
+	
+.timelineWeather_box > div:nth-of-type(2) {
+	position: relative;
+	height: 89%;
+    overflow: hidden;
+}
+	
+.timelineWeather_box > div:nth-of-type(2) > ul {
+	position: absolute; 
+}
+	
+.timelineWeather_box > div[class^='timeline_slides']{
+	height: 5%;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.timelineWeather_box ul {
+	padding-left: 0;	
+}	
+
+.timelineWeather {
+	border-bottom: 1px solid #acacac;
+}
+
+.timelineWeather h3 {
+	color: #d3d3d5;
+    text-shadow: 3px 3px 3px #0c0b0b;
+}	
+   
+.timelineValue li {
+	padding: 10px 0;
+	color: #d8d7d7e3;
+}
+	
+.off {
+	opacity : 0.5;
+}
+	
+img.cloudy, img.sunny, img.rain {
+	width : 15%;
+}
+
+img.cumulus {
+	width : 7%;
+	margin-right: 10px;
+}
+
+.today {
+	color : red
+}
+	
+.weekelyWeather_box {
+	background-color: #000000f7;
+	color : white;
+	padding: 0px 22px;
+	border-top: 1px solid white;
+	overflow: hidden;
+}
+
+.weekelyWeather_title {
+	position: absolute;
+    bottom: 0;
+    text-align: center;
+    padding: 10px 20px;
+    background-color: #3c464c;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 10px 10px 0 0;
+    color: #d0d0d0f5;
+    border: 1px solid white;
+}
+
+.weekelyWeather_title > p {
+	font-size: 9px;
+    padding: 5px;
+    color: #cbadad;
+}
+    
+.weekelyWeather_box  ul {
+	overflow: hidden;
+}
+
+.weekelyWeather_box > ul {
+	padding : 0;
+}
+
+.weekelyWeather_img_box {
+	width: 100px;
+}
+
+.weekelyWeather_img_box:not(.weekelyWeather_img_box:nth-of-type(1)) {
+	 padding: 15px;
+}   
+
+.weekelyWeather_box ul:first-child > li {
+    float: left;
+    border-right: 1px solid #928989a6;
+    padding: 30px 10px 20px 35px;
+}
+	
+.weekelyWeather_box ul:first-child > li:last-child {
+	border : 0;
+}
+	
+.day_of_week {
+	font-size :17px;
+	padding-bottom: 20px;
+}
+
+.weekelyWeatherValue {
+	overflow: hidden;
+}
+
+.weekelyWeatherValue > div {
+	width: 30%;
+	float: left;
+}
+	
+.weekelyWeatherValue > ul {
+	display: inline-block;
+    width: 60%;
+    float: left;
+}
+	
+.weekelyWeatherValue > ul > li {
+	padding: 4px 0;
+}
+
+.address_api {
+	padding: 3px 0 0 10px;
+}   
+	

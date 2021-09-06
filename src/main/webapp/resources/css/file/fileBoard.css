@@ -1,0 +1,78 @@
+@charset "UTF-8";
+
+#content {
+	padding-top: 20px;
+}
+
+tabel thead td {
+	text-align: center;
+}
+
+table th {
+	text-align: center;
+}
+
+.modal-body {
+	position : relative;
+}
+
+.modal-dialog {
+	width:auto;
+	display:table;
+}
+
+.table-container {
+	text-align: center;
+	max-width : 1200px;
+	max-height : 500px;
+	white-space: nowrap;
+	overflow:scroll;
+}
+
+.table-container table {
+	width : auto;
+}
+
+.table-bordered {
+    text-align: center;
+}
+
+.modal-body .uploadOption {
+	display: none;
+    position: absolute;
+    top: 0;
+    left: 15%;
+}
+
+#content_detail h3 {
+	margin-bottom: 25px;
+}
+
+.preview_explain {
+	border: 1px solid #c7c7c7;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 15px;
+}
+
+.xlxs_formt_img {
+	width: 300px;
+    margin: 0 auto;
+    padding: 20px 10px;
+}
+
+.csv_formt_img {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px 10px;
+}
+
+#preview_explain_modal .tab-pane {
+    width: 600px;  	
+}
+
+.wrong_csv_format {
+	padding: 10px 0;
+}
+
+  

@@ -1,0 +1,275 @@
+@charset "UTF-8";
+
+input, textarea {
+	outline: none;
+    border: none;
+}
+
+textarea {
+   	min-height: 120px;
+  	padding-top: 9px;
+   	padding-bottom: 13px;
+   	outline: none;
+   	border: none;
+}
+
+#content {
+	padding-top: 20px;
+}   
+
+#show_detail_modal .modal-body {
+	padding : 0;
+}
+
+.event_box .event {
+	border: 1px solid #e0d1d1;
+   	border-radius: 10px;
+   	height: 250px;
+}
+
+.event_date > * {
+    border-bottom: 1px solid #dacaca;
+    padding: 5px;
+    text-align: center;
+}
+
+.modify_btn {
+    margin-right: 57px;
+}
+
+.event_box {
+	margin-bottom: 35px;
+}
+
+.event_content {
+	padding: 0 42px;
+}
+
+.carousel-inner {
+	height: 500px;
+}    
+
+#add_modal .form-group {
+	width: 100%;
+   	position: relative;
+}
+   
+.wrap-input {
+	border: 1px solid #673535;
+    border-radius: 13px;
+    padding: 10px 30px 9px 22px;
+    margin-bottom: 20px;
+    background-color: white;
+}
+
+.event_box .event{
+	margin: 10px 0 20px 0;
+}
+
+.save_input, textarea, .modify_input{
+   	display: block;
+   	width: 100%;
+   	background: 0 0;
+   	font-family: Montserrat-SemiBold;
+   	font-size: 15px;
+   	color: #555;
+   	line-height: 1.2;
+   	padding-right: 15px;
+}
+ 
+.label-input {
+    font-family: Montserrat-SemiBold;
+   	font-size: 10px;
+   	color: #393939;
+   	line-height: 1.5;
+   	text-transform: uppercase;
+}
+  
+#add_modal .modal-body {
+   	overflow: hidden;
+}
+   
+#add_modal .modal-header {
+   	background-color: #a8c2dc;
+   	border-radius: 6px 6px 0 0;
+}
+      
+#add_modal .modal-content {
+  	background-color: #e8e8e8;
+}
+   
+#add_form .form-group:last-child .wrap-input {
+   	min-height: 120px;
+   	padding-top: 9px;
+   	padding-bottom: 13px;
+}
+
+#add_form input, textarea {
+   	outline: none;
+   	border: none;
+}
+   
+.save_btn, .modify_submit_btn{
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    background-color: #333;
+    border-radius: 25px;
+    font-family: Montserrat-Medium;
+    font-size: 16px;
+    color: #fff;
+    line-height: 1.2;
+    justify-content: center;
+} 
+  
+#add_form .modal-footer {
+  	padding-top: 20px;
+   	width: 100%;
+}
+
+.accordion {
+  	width: 100%;
+   	display: block;
+} 
+ 
+#modify_modal .modal-content {
+	background-color: #c9cdd1;
+}
+  
+#modify_form {
+  	overflow: hidden;
+   	background-color: white;
+   	border-radius: 18px;
+}
+
+.form_title {
+    display: block;
+    width: 100%;
+    font-family: Montserrat-Black;
+    font-size: 20px;
+    color: #333;
+    line-height: 1.2;
+    text-align: center;
+        padding: 10px 0 20px 0;
+}
+
+.select{
+	background-color:#ffe297;
+  	font-weight: bold;
+  	color: black;
+}
+	
+.active { 
+	color: #fff;
+}
+
+p.category_title {
+	display: inline-block;
+   	padding: 10px;
+}
+      
+.category_container {
+	width: 235px;
+    float: left;
+    margin-right: 45px;
+} 
+
+.category_box {
+   z-index: 2;
+   padding: 10px;
+   border: 1px solid #ccc;
+   background: #eee;
+   border-radius: 10px;
+   text-align: center;
+}
+
+.category_box > div {
+	text-align: left;
+}
+
+.category_box  .form-check {
+  	position: relative;
+   	white-space: nowrap;
+   	border-radius: 3px;
+   	margin-bottom: 10px;
+   	padding: 5px 10px;
+}
+
+.add_category_box {
+     font-weight: bolder;
+    background-color: #bebebe;
+    border-radius: 10px;
+    color: #000000;
+    padding: 10px 20px;
+    margin-bottom: 30px;
+}
+
+.add_category_box input {
+	margin-bottom: 10px; 
+}
+
+.add_category_box div:last-child {
+  	text-align: right;
+}
+
+.category_add_btn {
+  	cursor:pointer;
+  	margin-top: 10px;
+}
+
+.category_delete, .category_modify {
+    font-size: 7px;
+    padding: 0 3px;
+    background-color: black;
+}
+
+.category-menu {
+  	display: inline-block;
+  	width: 60%;
+}
+  
+.form-check {
+    background-color: #000000c7;
+  	color: white;
+   	padding: 0 3px;
+}
+
+/** calender set */
+.fc-day-sat { /* 토요일 */
+  	background-color: #e4e4e68f;
+}     
+  	
+.fc-day-sun { /* 일요일 */
+  	background-color: #f7bdbd66;
+}
+
+.fc-event-title-container {
+  	cursor: pointer;
+}
+
+.calendar_box {
+	float: left;
+    width: 70%;
+}
+
+#calendar, .fc-view-harness, .fc-daygrid, .fc-scrollgrid, .fc-scroller-liquid-absolute {
+	width: 100%;
+}
+
+.fc-event-main {
+	display: inline-block;
+}
+
+.delete_btn {
+	float: left;
+    cursor: pointer;
+}
+
+.delete_btn:hover {
+  	text-shadow: 3px 3px 1px #ffc5e7;
+}
+
+.fc-daygrid-event {
+	width: 80%;
+    float: left;
+}

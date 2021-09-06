@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kim.ilhwaland.dao.FileDao;
 import com.kim.ilhwaland.dto.FileDetail;
+import com.kim.ilhwaland.helper.BadRequestException;
 
 @Repository
 public class FileDaoImpl implements FileDao{
@@ -45,7 +46,7 @@ public class FileDaoImpl implements FileDao{
 		FileDetail result =  null;
 		result = sqlSession.selectOne("FileMapper.selectUploadFile",input);
 		if(result == null) {
-			throw new NullPointerException("result == null");
+			throw new BadRequestException();
 		}
 		return result;
 	}

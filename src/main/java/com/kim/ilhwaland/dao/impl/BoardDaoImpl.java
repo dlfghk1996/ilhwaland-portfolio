@@ -8,6 +8,9 @@ import org.springframework.stereotype.Repository;
 
 import com.kim.ilhwaland.dao.BoardDao;
 import com.kim.ilhwaland.dto.Board;
+import com.kim.ilhwaland.helper.BadRequestException;
+
+import javassist.NotFoundException;
 
 @Repository
 public class BoardDaoImpl implements BoardDao{
@@ -29,14 +32,12 @@ public class BoardDaoImpl implements BoardDao{
 	/** 2) 게시글 상세보기 */
 	@Override
 	public Board getBoardContent(int input) throws Exception {
+		
 		Board result = null;
-		int reandnumResult = sqlSession.update("BoardMapper.updateReadNum",input); //조회수 업데이트
 		result = sqlSession.selectOne("BoardMapper.selectBoard",input);
+		
 		if(result == null) {
-			throw new NullPointerException("result == null");
-		}
-		if(reandnumResult == 0) {
-			throw new NullPointerException("reandnumResult == 0");
+			throw new NotFoundException("존재하지 않는 게시글 조회로 에러 발생");
 		}
 		return result;
 	}
@@ -46,9 +47,6 @@ public class BoardDaoImpl implements BoardDao{
 	public List<Board> getBoardList(Board board) throws Exception {
 		List<Board> result = null;
 		result = sqlSession.selectList("BoardMapper.selectBoardList",board);
-		if(result == null) {
-			throw new NullPointerException("result == null");
-		}
 		return result;
 	}
 	
@@ -56,7 +54,10 @@ public class BoardDaoImpl implements BoardDao{
 	@Override
 	public Board checkBoardPassword(Board input) throws Exception {
 		Board result = null;
-		result = sqlSession.selectOne("BoardMapper.selectBoardPassword",input);
+		result = sqlSession.selectOne("BoardMapper.selectBoardPassword", input);
+		if(result == null) {
+			throw new BadRequestException();
+		}
 		return result;
 	}
 	
@@ -64,30 +65,37 @@ public class BoardDaoImpl implements BoardDao{
 	@Override
 	public void updateBoardContent(Board input) throws Exception {
 		int result = 0;
-		result = sqlSession.update("BoardMapper.updateBoard",input);
+		result = sqlSession.update("BoardMapper.updateBoard", input);
 		if(result == 0) {
-			throw new NullPointerException("result == 0");
+			throw new NullPointerException("게시글 수정 쿼리중 삭제 에러 발생");
 		}
 	}
 
 	/** 6) 게시글 삭제 */
 	@Override
-	public void deleteBoardContent(int input) throws Exception {
+	public void deleteBoardContent(Board input) throws Exception {
 		int result = 0;
-		result = sqlSession.delete("BoardMapper.deleteBoard",input);
+		result = sqlSession.delete("BoardMapper.deleteBoard", input);
 		if(result == 0) {
-			throw new NullPointerException("result == 0");
+			throw new NullPointerException("게시글 삭제 쿼리중 삭제 에러 발생");
+		}
+	}
+	
+	/** 7) 조회수 업데이트 */
+	@Override
+	public void updateReadnum(int input) throws Exception {
+		int reandnumResult = 0;
+		reandnumResult = sqlSession.update("BoardMapper.updateReadNum",input); 
+		if(reandnumResult == 0) {
+			throw new NullPointerException("게시글 조회수 업데이트 쿼리 실행중 에러 발생");
 		}
 	}
 
-	/** 페이지네이션 전체 게시글 수*/
+	/** 8) 페이지네이션 전체 게시글 수*/
 	@Override
 	public int getotalContent() throws Exception {
 		int result = 0;
 		result = sqlSession.selectOne("BoardMapper.selectBoardCount");
-		if(result == 0) {
-			throw new NullPointerException("result == null");
-		}
 		return result;
 	}
 }

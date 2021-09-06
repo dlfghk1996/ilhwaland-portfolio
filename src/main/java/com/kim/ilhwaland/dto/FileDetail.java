@@ -1,40 +1,48 @@
 package com.kim.ilhwaland.dto;
 
-import com.kim.ilhwaland.helper.Annotation;
+import com.kim.ilhwaland.helper.ExcelHeaderColum;
 import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvBindByPosition;
 
 public class FileDetail {
 	
+    // pk
 	@CsvBindByName(column = "파일 번호")
 	@CsvBindByPosition(position = 0)
-	@Annotation(headerName = "파일 번호")
-	private int file_num;             // pk
+	@ExcelHeaderColum(headerName = "파일 번호") 
+	private int file_num;   
 	
+	// 기존  파일 이름
 	@CsvBindByName(column = "파일명")
 	@CsvBindByPosition(position = 1)
-	@Annotation(headerName = "파일명")
-	private String original_name;     // 기존  파일 이름
+	@ExcelHeaderColum(headerName = "파일명")
+	private String original_name;     	
 	
-	private String file_name;     	  // 서버에  저장되는 파일이름
-	
+	// 서버에  저장되는 파일이름
+	private String file_name;     	  
+	 
+	// 파일 확장자
 	@CsvBindByName(column = "확장자")
 	@CsvBindByPosition(position = 2)
-	@Annotation(headerName = "확장자")
-	private String filetype;          // 파일 확장자
+	@ExcelHeaderColum(headerName = "확장자")
+	private String filetype;         
 	
+	// 등록일
 	@CsvBindByName(column = "등록일") 
 	@CsvBindByPosition(position = 3)
-	@Annotation(headerName = "등록일")
-	private String register_date;     // 등록일
+	@ExcelHeaderColum(headerName = "등록일")
+	private String register_date;     
+	 
+	// 저장되어 있는 경로
+	private String filePath;        
+	 
+	// 미리보기 기능을 지원하는 파일인지 구분
+	private String readAble;        
 	
-	private String filePath;         // 저장되어 있는 경로
-	
-	private String readAble;         // 미리보기 기능을 지원하는 파일인지 구분
+	// dto 에서만 사용
+	private String tempFilename;     
 
-	private String tempFilename;     // dto 에서만 사용
-
-
+	private int rnum;   
 
 	// 기본 생성자
 	public FileDetail() {
@@ -115,6 +123,14 @@ public class FileDetail {
 		this.tempFilename = tempFilename;
 	}
 
+	public int getRnum() {
+		return rnum;
+	}
+
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
+	}
+	
 	@Override
 	public String toString() {
 		return "FileDetail [file_num=" + file_num + ", original_name=" + original_name + ", file_name=" + file_name

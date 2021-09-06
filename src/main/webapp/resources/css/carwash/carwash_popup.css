@@ -1,0 +1,158 @@
+@charset "UTF-8";
+body{
+	margin:0;
+	color:#6a6f8c;
+	background:#c8c8c8;
+	font:600 16px/18px 'Open Sans',sans-serif;
+}
+	
+*,:after,:before{box-sizing:border-box}
+.clearfix:after,.clearfix:before{content:'';display:table}
+.clearfix:after{clear:both;display:block}
+a{color:inherit;text-decoration:none}
+	
+.wrap{
+	width:100%;
+	margin:auto;
+	max-width:525px;
+	min-height:670px;
+	position:relative;
+	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
+}
+
+.popup_box{
+	width:100%;
+	height:100%;
+	position:absolute;
+	padding:40px 40px 50px 40px;
+	background:rgba(40,57,101,.9);
+}
+
+.popup_box .carwash_info{
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	position:absolute;
+	backface-visibility:hidden;
+	transition:all .4s linear;
+}
+
+.box .group .button{
+	text-transform:uppercase;
+}
+	
+.box{
+	min-height:345px;
+	position:relative;
+	perspective:1000px;
+	transform-style:preserve-3d;
+}
+	
+.box .group{
+	margin-bottom:15px;
+}
+	
+.box .group .button{
+	width:100%;
+	color:#fff;
+	display:block;
+}
+	
+.box .group .button{
+	border:none;
+	padding:15px 20px;
+	border-radius:25px;
+	background:rgba(255,255,255,.1);
+}
+	
+.box .group .button{
+	background:#1161ee;
+}
+	
+.box .group label {
+	width:15px;
+	height:15px;
+	border-radius:2px;
+	position:relative;
+	display:inline-block;
+	background:rgba(255,255,255,.1);
+}
+	
+.box .group label .icon:before,
+.box .group label {
+	content:'';
+	width:10px;
+	height:2px;
+	background:#fff;
+	position:absolute;
+	transition:all .2s ease-in-out 0s;
+}
+	
+.box .group label {
+	left:3px;
+	width:5px;
+	bottom:6px;
+	transform:scale(0) rotate(0);
+}
+	
+.box .group label {
+	top:6px;
+	right:0;
+	transform:scale(0) rotate(0);
+}
+	
+.box .group{
+	color:#fff;
+}
+	
+.hr{
+	height:2px;
+	margin:60px 0 50px 0;
+	background:rgba(255,255,255,.2);
+}
+	
+.title{
+	margin-bottom: 70px;
+	text-transform: uppercase;
+	color: #fff;
+    border-color: #1161ee;
+	font-size: 22px;
+    margin-right: 15px;
+    padding-bottom: 5px;
+    margin: 0 15px 50px 0;
+    display: inline-block;
+    border-bottom: 2px solid transparent;
+}
+.speech-bubble{
+	position: relative;
+    background: #f1f8f8;
+    border-radius: 0.4em;
+    width: 150px;
+    padding: 10px;
+    color : #9c9595;
+    text-align: center;
+    top: 30px;
+    left: -25px;
+}
+
+.speech-bubble:after {
+	content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border: 19px solid transparent;
+    border-top-color: #f1f8f8;
+    border-bottom: 0;
+    border-right: 0;
+    margin-left: -9.5px;
+    margin-bottom: -19px;
+}
+
+.title > div:last-child {
+    position: absolute;
+    right: 0;
+    top: 30px;
+}

@@ -16,9 +16,9 @@ public interface BoardReplyDao {
 	public void updateReply(BoardReply input)throws Exception;
 	
 	// 댓글 삭제
-	public int deleteReply(int input)throws Exception;
+	public void deleteReply(BoardReply input)throws Exception;
 	
 	// 비밀번호 확인
-	public int replyPwCheck(BoardReply input) throws Exception;
+	public void replyPwCheck(BoardReply input) throws Exception;
 	
 }

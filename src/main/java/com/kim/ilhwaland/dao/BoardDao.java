@@ -19,11 +19,14 @@ public interface BoardDao {
 	// 게시글 수정
 	public void updateBoardContent(Board input)throws Exception;
 	
-	// 게시글 비밀번호 확인 후 
+	// 게시글 비밀번호 확인  
 	public Board checkBoardPassword(Board input)throws Exception;
 	
 	// 게시글 삭제
-	public void deleteBoardContent(int input)throws Exception;
+	public void deleteBoardContent(Board input)throws Exception;
+
+	// 조회수 업데이트 
+	void updateReadnum(int input) throws Exception;
 	
 	// 페이지네이션 : 전체 게시글 수 확인
 	public int getotalContent()throws Exception;

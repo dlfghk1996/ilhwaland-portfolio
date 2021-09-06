@@ -6,21 +6,35 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- Bootstrap -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> <!-- Bootstrap -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/commons.css">
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/sidebar.css">
 </head>
 <body>
 <div class="wrapper">
 <%@ include file="../include/header.jsp" %>
 <%@ include file="../include/sidebar.jsp" %>
 	<div id="content">
+		<div id="content_detail">
+			<h3>DB 데이터를  XLSX, CSV 파일로 내보내기</h3>
+			<ul>
+				<li><i class="far fa-check-square"></i> 라이브러리 : Apache POI, Open CSV</li>
+				<li>
+					<i class="far fa-check-square"></i> 
+					<span>XLXS : Reflection을 이용하여, 렌더링 할 클래스의 변수와 어노테이션에 접근하여 <br>
+      						     value와 헤더에 들어갈 이름을 추출하고, Apachi POI의 workbook 객체와 Sheet 객체를 이용하여 XLXS 파일을 생성하고 내보낸다.</span>
+				</li>
+				<li>
+					<i class="far fa-check-square"></i>
+					<span>CSV : 고유한 매핑 전략을 사용하여 Annotation 으로 정의한 열 이름과 순서를 적용하여 CSV 를 생성하고 내보낸다.</span>
+				</li>
+			</ul> 
+		</div>
 		<div class="downloadMenu">
 			<ul class="nav nav-tabs">
-				<li><a href="csvDownload" class="btn btn-primary">csv</a></li>
-    			<li><a href="excelDownload" class="btn btn-primary">excel</a></li>
+				<li><a href="csvDownload" class="btn btn-primary">CSV</a></li>
+    			<li><a href="excelDownload" class="btn btn-primary">XLSX</a></li>
 			</ul>
 		</div>
 		<div id="uploadList">
@@ -54,7 +68,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
+<script src="https://kit.fontawesome.com/58a77f3783.js"></script>
 <script type="text/javascript">
 
 </script>

@@ -1,0 +1,128 @@
+@charset "UTF-8";
+
+.container {
+	width: 100%;
+    font-size: 12px;
+}
+
+#content {
+	min-height: 100vh;
+    background-color: #f7f7fc;
+    position: relative;
+    padding: 0 20px;
+    position: absolute;
+    min-width: 70%;
+    left: 20%;
+    top: 0;
+    width: 70%;
+}
+
+.content_wrap{
+	padding-right: 50px;
+}
+
+h1 {
+	margin-bottom: 25px;
+}
+ 
+.contentInfo1 {
+	float: left;
+}
+     
+.contentInfo2 {
+	float: right;
+   	padding-right: 50px;
+} 
+
+.panel {
+ 	margin-bottom: 50px;
+}
+
+.panel-heading {
+	padding-left: 35px;
+    overflow: hidden;
+}
+     
+.panel-body {
+	min-height: 300px;
+}
+
+.panel-footer {
+	text-align: right;
+}
+
+.reply_form_wrap {
+	background-color: #f7f2eb;
+	padding: 30px 50px 10px 90px;
+	border: 1px solid #e2d1d1;
+}
+
+ #reply_form {
+ 	overflow: hidden;
+}
+
+.form-group {
+	margin-bottom: 15px;
+    padding-bottom: 20px;
+}
+	
+.form-inline {
+	float: left;
+	width: 35%;
+	margin-right: 20px;
+}
+
+.form-inline input{
+	width: 100%;
+}
+
+.comment textarea {
+	width: 80%;
+	margin-right: 25px;
+	float: left;
+}
+     
+.comment button {
+	padding: 26px;
+}
+
+.reply_text {
+	width: 65%;
+}
+
+.reply_nickname {
+	width: 10%;
+}  
+       
+.reply_table {
+	width :100%;
+	text-align: center;
+    background-color: #3e3b3b;
+    color: white;
+}    
+
+.reply_icon {
+	padding-left: 30px;
+}  
+  
+.popover_close_btn {
+	margin-left: 100px;
+}
+
+.reply_icon {
+	text-align: right;
+    padding-left: 15px;
+}
+
+#reply_container button {
+	background-color: #82807d;
+}
+
+.replyPasswordCheck_btn {
+	margin-top: 10px; 
+}
+    
+#boardPasswordCheck_modal input {
+	width: 77%;
+    display: inline-block;
+} 
