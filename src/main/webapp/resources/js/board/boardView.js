@@ -52,8 +52,8 @@ $(function(){
 	// 게시글 수정 : 동적 form을 생성하여 서버로 보낸다.
 	function modifyBoard(){
 		var form = document.createElement('form');
-			form.setAttribute('method', 'POST');
-			form.setAttribute('action', 'boardUpdate');
+			form.setAttribute('method','POST');
+			form.setAttribute('action','boardUpdate');
 		var input = document.createElement('input');
 			input.setAttribute('type','hidden');
 			input.setAttribute('name','board_num');

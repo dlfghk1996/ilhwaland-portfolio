@@ -17,7 +17,7 @@
 <%@ include file="../include/sidebar.jsp" %>
 	<div id="content">
 		<div id="content_detail">
-			<h3>DB 데이터를  XLSX, CSV 파일로 내보내기</h3>
+			<h3><b>DB 데이터를  XLSX, CSV 파일로 내보내기</b></h3>
 			<ul>
 				<li><i class="far fa-check-square"></i> 라이브러리 : Apache POI, Open CSV</li>
 				<li>
@@ -69,9 +69,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="https://kit.fontawesome.com/58a77f3783.js"></script>
-<script type="text/javascript">
 
-</script>
 </body>
 </html>
 	

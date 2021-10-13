@@ -17,20 +17,19 @@
 	<div id="uploadFileContent">
 		<c:choose>
 			<c:when test = "${fileType eq 'xlsx' || fileType eq 'xls'}">
-				<c:set var="excelMap" value="${fileView.excelMap}"/>
+				<c:set var="sheet_list" value="${fileView.sheetHelper}"/>
 				<ul class="nav nav-tabs">
-					<c:forEach var="sheet" items="${excelMap}" varStatus="status">
+					<c:forEach var="sheet" items="${sheet_list}" varStatus="status">
 						<li class="nav-item <c:if test='${status.count eq 1}'>active</c:if>">
-							<!-- sheet 이름에 공백이 들어간것을 제거한다. -->
-							<a data-toggle="tab" href="#${fn:replace(sheet.key, ' ', '')}">${sheet.key}</a>
+							<a data-toggle="tab" href="#${sheet.sheet_num}">${sheet.sheet_name}</a>
 						</li>
 					</c:forEach>
 				</ul>
 				<div class="tab-content">
-					<c:forEach var="sheet" items="${excelMap}" varStatus="status">
-						<table class="table table-bordered table-striped tab-pane fade <c:if test='${status.count eq 1 }'>in active</c:if>" id="${fn:replace(sheet.key, ' ', '')}">
+					<c:forEach var="sheet" items="${sheet_list}" varStatus="status">
+						<table class="table table-bordered table-striped tab-pane fade <c:if test='${status.count eq 1 }'>in active</c:if>" id="${sheet.sheet_num}">
 							<tbody>
-								<c:forEach items="${sheet.value}" var="rowlist">
+								<c:forEach items="${sheet.sheet}" var="rowlist">
 									<tr>
 										<c:forEach items="${rowlist}" var="value">
 											<td>${value}</td>

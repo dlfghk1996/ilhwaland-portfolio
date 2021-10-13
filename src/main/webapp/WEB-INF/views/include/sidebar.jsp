@@ -6,9 +6,8 @@
     </div>
 
     <ul class="list-unstyled components">
-    	<p>MEMU</p>
-        <li class="active">
-            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">File</a>
+        <li>
+            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">파일</a>
             <ul class="collapse list-unstyled" id="homeSubmenu">
                 <li>
                     <a href="dataArchive">DB데이터 csv, xlsx 형식으로 내보내기</a>
@@ -28,18 +27,15 @@
             <a href="schedulerPage">스케줄러</a>
         </li>
         <li>
-            <a href="#apiSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">오픈 API 활용</a>
-            <ul class="collapse list-unstyled" id="apiSubmenu">
-                <li>
-                    <a href="weather">오늘의 날씨</a>
-                </li>
-                <li>
-                    <a href="car_washMap">내 주변 세차장</a>
-                </li>
-            </ul>
+        	<a href="weather">오늘의 날씨</a>
+        </li>
+        <li>
+        	<a href="car_washMap">내 주변 세차장</a>
         </li>
         <li>
             <a href="board">게시판</a>
         </li>
 	</ul>
 </nav>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

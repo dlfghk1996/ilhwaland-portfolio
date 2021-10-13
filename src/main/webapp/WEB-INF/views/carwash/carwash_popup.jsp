@@ -18,7 +18,7 @@
 				<div class="group">
 					<c:choose>
 						<c:when test="${empty rainyday_list}">
-							<div class="title">오늘은 세차하기 좋은날이네용</div>
+							<div class="title">오늘은 세차하기 좋은 날</div>
 							<img src="${pageContext.request.contextPath}/resources/img/carwash/carwash.png" style="width: 100%">		
 						</c:when>
 						<c:otherwise>

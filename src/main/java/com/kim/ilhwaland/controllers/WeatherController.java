@@ -28,14 +28,12 @@ public class WeatherController {
 	private CarwashHelper carwashHelper;
 	
 	
-	
-	/** [VIEW] 세차장 안내 팝업창  */
+	/** [VIEW] 세차 추천 팝업창  */
 	@RequestMapping(value = "weatherService_popup")
 	public String weatherService_popup(Model model) {
-		
 		// 비오는 요일 리스트를 view에 반환 한다.
-		model.addAttribute("rainyday_list", carwashHelper.rainyday_list); 
-		
+		model.addAttribute("rainyday_list", carwashHelper.getRainyday_list()); 
+	
 		return "carwash/carwash_popup";  
 	}
 	

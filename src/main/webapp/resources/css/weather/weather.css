@@ -141,6 +141,7 @@ button {
 	
 .timelineWeather_box > div:nth-of-type(2) > ul {
 	position: absolute; 
+	width: 100%;
 }
 	
 .timelineWeather_box > div[class^='timeline_slides']{
@@ -264,4 +265,3 @@ img.cumulus {
 .address_api {
 	padding: 3px 0 0 10px;
 }   
-	

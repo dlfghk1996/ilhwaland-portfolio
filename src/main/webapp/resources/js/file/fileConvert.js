@@ -15,7 +15,7 @@ $(document).ready(function(){
 	}).on('dragleave', function(e){                
 		e.preventDefault();
 		e.stopPropagation();
-		$(this).css('background-color', '#ccc');
+		$(this).css('background-color','#ccc');
 	})
 
 
@@ -41,8 +41,29 @@ $(document).ready(function(){
 				   .prop('files', files)  
 				   .closest('form')
 				   .submit();  
+	   
+	    	// 파일 변환 요청시 실행되는 로직
+	    	$(e.target).closest('form').hide();
+		    $(e.target).closest('.tab-pane').children('.loading').show();
+		    
+		    // 응답 헤더에 서버에서 생성한 'fileDownloadToken' 라는 쿠키가 있는지  0.5 초마다 체크한다.
+		    FILEDOWNLOAD_INTERVAL = setInterval(function() {
+		    	
+		    	// 파일 변환 완료시 실행되는 로직
+		    	if ($.cookie('fileDownloadToken') == 'TRUE') {
+			        // 1. 쿠키 삭제
+			        $.removeCookie('fileDownloadToken', { path: '/'});
+			        // 2. Interval 종료
+			        clearInterval(FILEDOWNLOAD_INTERVAL);
+			        // 3. UI 변경 및 alert 알림
+			        $(e.target).closest('.tab-pane').children('.loading').hide();
+			        $(e.target).closest('form').show();
+			        alert('파일 변환이 완료 되었습니다.');	
+		      	}
+		   }, 500);
 		}
 	});
+
 
 	// 4. 파일 확장자 확인
 	function fileTypeCheck(convertType, file){

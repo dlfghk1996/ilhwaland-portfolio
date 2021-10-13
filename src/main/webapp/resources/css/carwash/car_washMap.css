@@ -11,6 +11,7 @@
 .box {
 	overflow: hidden;
     margin-top: 50px;
+    height: 100%;
 }
 
 #map {
@@ -46,13 +47,12 @@
 	padding: 7px;
 }	
 
-.setCenter_btnn {
+.setCenter_btn {
+	padding: 5px;
     position: absolute;
-    right: 8px;
-    z-index: 99999;
-    padding: 10px;
-    background-color: black;
-    color: white;
+    top: 3px;
+    right: 5px;
+    z-index: 9999;
     font-weight: bold;
     border-radius: 17px;
     box-shadow: 5px 2px 3px 1px #7e7e78;
@@ -66,7 +66,7 @@
     background-color: #8ae28b8f;
     padding: 15px 10px;
     border-radius: 12px;
-    height: 515px;
+    height: 500px;
     border: 1px solid #61e232;
     
 }
@@ -102,5 +102,5 @@ dt {
 .bloggername {
 	font-size: 8px;
     text-align: right;
-} 
-
+}
+    

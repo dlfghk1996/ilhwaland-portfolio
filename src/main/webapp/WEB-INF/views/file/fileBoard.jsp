@@ -20,7 +20,7 @@
 	<%@ include file="../include/sidebar.jsp" %>
 	<div id="content">
 		<div id="content_detail">
-			<h3>파일 업로드 <i class="fas fa-plus"></i> 파일 다운로드 <i class="fas fa-plus"></i> 파일 데이터 미리보기</h3>
+			<h3><b>파일 업로드 <i class="fas fa-plus"></i> 파일 다운로드 <i class="fas fa-plus"></i> 파일 데이터 미리보기</b></h3>
 			<div>
 				<p><i class="far fa-check-square"></i><b>엑셀파일</b></p>
 				<ul>
@@ -34,7 +34,7 @@
 				<ul>
 					<li><i class="fas fa-square"></i>아파치 CSV 라이브러리를 사용하여 csv파일을 읽습니다.</li>
 					<li><i class="fas fa-square"></i>csv format 형식을 지정하고 지정된 형식에 따라 csv파일을 구문분석하고 분석한 데이터는 테이블 형식으로 표현합니다.</li>
-					<li><i class="fas fa-square"></i>jchardet 라이브러리를 사용하여 파일의 인코딩을 확인하고, 해당 charset 으로 파일을 읽는다.</li>
+					<li><i class="fas fa-square"></i>jchardet 라이브러리를 사용하여 파일의 인코딩을 확인하고, 해당 charset 으로 파일을 읽습니다.</li>
 				</ul>
 			</div>
 			<div><i class="far fa-check-square"></i><b>이미지,텍스트 파일의 내용을 다운로드 없이 web에서 볼 수 있습니다.</b></div> 

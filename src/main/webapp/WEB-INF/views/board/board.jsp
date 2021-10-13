@@ -71,9 +71,12 @@
 					 			 			<c:set var = "subject" value="${fn:replace(subject, board.keyword, mark)}"/>
 					 			 		</c:if>
 						 				<tr>
-						 					<td>${board_list.rnum}</td>
+						 					<td>${board_list.board_num}</td>
 						 					<td style="width: 70%;">
 						 						<a href="boardView?board_num=${board_list.board_num}"> ${subject} </a>
+						 						<c:if test = "${board_list.reply_count > 0}">
+													<span class="reply_count">(${board_list.reply_count})</span>
+												</c:if>
 						 					</td>
 						 					<td>${writer_id}</td>
 						 					<td>${board_list.register_date}</td>

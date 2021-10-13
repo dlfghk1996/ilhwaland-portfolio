@@ -14,8 +14,8 @@ $(function(){
     	$.ajax({
 			type: 'POST',
 			url:  'scheduleCategory',
-			contentType: "application/json; charset=UTF-8",
-			data : JSON.stringify({'categoryName': value, 'color': color, 'memberNum': member_num }),
+			contentType: 'application/json; charset=UTF-8',
+			data : JSON.stringify({'categoryName': value, 'color': color, 'memberNum': member_num}),
 			success: function(result, textStatus, jqXHR) {
 				location.reload();
 	        },

@@ -42,7 +42,7 @@ public class ExcelDownload extends AbstractXlsxView{
 		List<FileDetail> fileList =  (List<FileDetail>) modelMap.get("fileList");
 		
 		/** 1. 엑셀 파일 내부 sheet 생성 */
-		sheet = workbook.createSheet("fileList"); 
+		sheet = workbook.createSheet("업로드파일내역"); 
 		
 		/** 2. 엑셀 헤더에 데이터 삽입  */
 		renderCellHeader();

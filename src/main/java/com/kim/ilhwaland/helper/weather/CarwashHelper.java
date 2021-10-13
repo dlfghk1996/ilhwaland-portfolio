@@ -31,8 +31,8 @@ public class CarwashHelper {
 	@Autowired
 	WeatherSet weatherSet;
 	
-	//  비오는 요일 리스트 (세차 알림) ㅇ
-	public List<String> rainyday_list = new ArrayList<String>();
+	//  비오는 요일 리스트
+	private List<String> rainyday_list;
 	
 	/** [Method 01] 사용자가 요청한 키워드로 네이버 블로그 크롤링   */
 	public List<Carwash_post> getCarwash_Search(String keyword) throws Exception {	
@@ -74,7 +74,9 @@ public class CarwashHelper {
 	
 	/** [Method 02] 동네예보 조회 데이터를 기반으로 다음 메서드를 구현한다.
 	 *  @ReturnValue = 강수확률 60% 이상인 요일, 강수 형태가 비,눈 인 요일  */
-	public void checkPopToCarwash(JSONArray jsonArray ) throws Exception {
+	public void checkPopToCarwash(JSONArray jsonArray) throws Exception {
+		List<String> day_list = new ArrayList<String>();
+		
 		for (int i = 0; i < jsonArray.size(); i++) {
 			JSONObject weather = (JSONObject) jsonArray.get(i);
 			String category = (String) weather.get("category");
@@ -86,14 +88,25 @@ public class CarwashHelper {
 				String day = weatherSet.getFcstDate_Desc((String) weather.get("fcstDate")); // 예보 날짜
 				
 				switch (category) {
-					case "POP": if(60 < Integer.parseInt(value)) {rainyday_list.add(day);} break;
-					case "PTY": if(!value.equals("0")) {rainyday_list.add(day);} break;
+					case "POP": if(60 < Integer.parseInt(value)) {day_list.add(day);} break;
+					case "PTY": if(!value.equals("0")) {day_list.add(day);} break;
 					default:
 						break;
 				}
 			}
 		}
+		
 		// list value값 중복 제거
-		this.rainyday_list = rainyday_list.stream().distinct().collect(Collectors.toList());
+		day_list = day_list.stream().distinct().collect(Collectors.toList());
+		setRainyday_list(day_list);
 	}
+	
+	public List<String> getRainyday_list() {
+		return rainyday_list;
+	}
+
+	public void setRainyday_list(List<String> list) {
+		this.rainyday_list = list;
+	}
+
 }

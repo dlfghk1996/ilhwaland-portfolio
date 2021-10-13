@@ -20,6 +20,7 @@ import com.kim.ilhwaland.dto.FileDetail;
 import com.kim.ilhwaland.helper.file.FileApi;
 import com.kim.ilhwaland.helper.file.FileUtil;
 import com.kim.ilhwaland.helper.file.FileViewHelper;
+import com.kim.ilhwaland.helper.file.SheetHelper;
 
 @Controller
 public class FileController {
@@ -123,10 +124,12 @@ public class FileController {
 		switch (filetype) {
 			// 엑셀 파일
 			case "xlsx": case "xls":
-				fileApi.readExcel(file);
 				
-				fileViewHelper.setExcelMap(FileApi.sheetMap);
-				FileApi.sheetMap = new HashMap<String,List<List<String>>>();
+				fileApi.readExcel(file);
+		
+				fileViewHelper.setSheetHelper(FileApi.sheet_list);
+				// 초기화
+				FileApi.sheet_list = new ArrayList<SheetHelper>();
 				break;
 			
 			// csv 파일
@@ -136,14 +139,14 @@ public class FileController {
 				
 			// pdf 파일
 			case "pdf" :
-				filePath = "fileboard\\" + fileDetail.getRegister_date() + "\\" + fileDetail.getFile_name() + ".pdf";
+				filePath = "fileboard/" + fileDetail.getRegister_date() + "\\" + fileDetail.getFile_name() + ".pdf";
 				fileViewHelper.setSourcePath(filePath);
 				
 				break;
 				
 			// img 파일 
 			case "jpg": case "gif" : case "png" : case "bmp": 
-				filePath = "fileboard\\" + fileDetail.getRegister_date() + "\\" + fileDetail.getFile_name();
+				filePath = "fileboard/" + fileDetail.getRegister_date() + "\\" + fileDetail.getFile_name();
 				String imgHtml = "<img src='"+filePath+"'width='100%'/>";
 				fileViewHelper.setSourcePath(imgHtml);
 				break;
@@ -193,13 +196,13 @@ public class FileController {
 	}
 
 	
-	/** [Method 06] PDF => IMG or IMG => PDF 로 타입 변환 */
+	/** [Method 06] PDF => IMG OR IMG => PDF 로 타입 변환 */
 	@RequestMapping(value="fileConvert", method = RequestMethod.POST)
 	public void fileConvert(MultipartHttpServletRequest multipartRequest, Model model, HttpServletResponse response, HttpServletRequest request) throws Exception {
-
+		
 		// 1. MultipartHttpServletRequest 타입의 파라미터를 이용해서 업로드 파일 데이터를 전달받는다.
 		List<MultipartFile> multipartFiles = multipartRequest.getFiles("file");
-		  
+		
 		/* 2. 사용자가 요청한 파일을 접근하여, 사용할수 있도록  사용자가 올린 파일을 내 프로젝트 내부에 임시로 저장한다.
 		      @Parmeter : 업로드메서드를 호출한 지점의 기능명 */ 
 		List<FileDetail> fileDetailList = fileUtil.uploadFile(multipartFiles,"convert");
@@ -211,13 +214,13 @@ public class FileController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		String key = fileType.equals("pdf")?"pdfToImg":"imgToPdf";
 		map.put(key, fileDetailList.get(0));
-
+		
 		/* 5. 파일 변환 후  출력 
 		 * @Explan : RequestDispatcher를 통해 JSP를 포함하는 뷰의 실제 렌더링 메서드
 		   @Parmeter : 파일 타입별 다운로드 방식으로 구현하기 위한 구분자   */ 
 		fileUtil.renderMergedOutputModel(map,request,response);
 		
-		// 6. 요청한 파일의 타입 변환 및 출력 이후에는, 파일을 사용하지 않기 때문에 해당 파일을 내 프로젝트 내부 업로드 폴더에서 삭제한다.
+		// 7. 요청한 파일의 타입 변환 및 출력 이후에는, 파일을 사용하지 않기 때문에 해당 파일을 내 프로젝트 내부 업로드 폴더에서 삭제한다.
 		fileUtil.deleteFile();
 	}
 }

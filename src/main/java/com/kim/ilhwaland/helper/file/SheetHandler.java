@@ -50,9 +50,12 @@ public class SheetHandler implements SheetContentsHandler{
 		currentCol = iCol;
 		
 		// 출력할수 있는 열의 길이 제한 (15)
-		 if(row.size() < 15) {
-			 row.add(value);
-		 }
+		 //if(row.size() < 15) {
+		//	 System.out.println("열길이 제한");
+		//	 row.add(value);
+		// }
+		// 각 column에 데이터를 담는다.
+		row.add(value);
 	}
 
 	/** 해당 엑셀의 머리말 꼬리말에 적혀 있는 값 */

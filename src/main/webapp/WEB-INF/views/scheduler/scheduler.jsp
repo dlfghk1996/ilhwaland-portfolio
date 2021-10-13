@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,86 +87,89 @@
 					</div>
 		
 					<div class="calendar_box"><div id="calendar"></div></div>		
+				</div>
 				
-					<!-- 일정 추가 Modal-->
-					<div class="modal fade" id="add_modal"  tabindex="-1" role="dialog">
-						<div class="modal-dialog" role="document">
-					    	<div class="modal-content">
-					    		<div class="modal-header">
-						        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						      	</div>
-						      	<div class="modal-body">
-						      		<form name ="add_form" id="add_form">
-						      			<span class= "form_title">일정 추가</span>
-						      			<input type="hidden" name="memberNum" value="${member_num}"/>
-						      			<input type="hidden" name="category" id="category"/>
-						      			<div class="form-group col-md-12">
-						      				<div class="wrap-input bg1">
-							      				<span class="label-input">Title</span>
-												<input type="text" class="save_input" name="title" id="title" placeholder="Enter title">
-							        		</div>
-							        	</div>
-								        <div class="form-group col-md-12">
-											<div class="wrap-input bg1 col-md-5">
-									            <span class="label-input">Starts at</span>
-									            <input type="date" class="save_input" name="startDate" id="startDate" />
-								          	</div>
-											<div class="wrap-input bg1 col-md-5 col-md-offset-2">
-												<span class="label-input">Ends at</span>
-												<input type="date" class="save_input" name="endDate">
-											</div>
-								        </div>
-								        <!-- category option -->
-								        <div class="panel-group col-md-12" id="accordion" role="tablist" aria-multiselectable="true">
-									       	<div class="panel panel-default">
-							                    <div class="panel-heading" role="tab">
-							                    	<h4 class="panel-title">
-							                        	<a data-toggle="collapse" data-parent="#accordion" href="#collapse1" class="accordion">
-							                        		<span class="glyphicon glyphicon-th-list"></span>
-							                        		 Category
-							                        		<i class="fas fa-arrow-circle-down" style="position: absolute; right: 0;"></i>
-							                        	</a>
-							                        </h4>
-							                    </div>
-			                    				<div id="collapse1" class="panel-collapse collapse" role="tabpanel">
-			                    					<div class="panel-body">
-			                    						<c:forEach var="category_list" items="${category_list}">
-			                    							<button type="button" class="btn btn-primary btn-rounded category_btn" value="${category_list.id}">${category_list.categoryName}</button>
-														</c:forEach>
-		       		 								</div>
-			                    				</div>
-			                    			</div>
-			                    		</div>
-								        <div class="form-group col-md-6">
-								        	<div class="wrap-input">
-												<span class="label-input">Message</span>
-												<textarea class="input100" name="event" id="event" placeholder="상세 내용을 적어주세요."></textarea>
-											</div>
-								        </div>
-						      		</form>  
-						      	</div>
-							    <div class="modal-footer">
-							        <button type="button" class="btn btn-primary save_btn" id="save-event">Save</button>
-							    </div>
-					    	</div>  <!-- modal content endTag -->
-	  					</div>
-					</div> <!-- add_modal endTag -->
-					
-					<!-- 일정 상세보기 Modal-->
-					<div class="modal fade" id="show_detail_modal" tabindex="-1" role="dialog">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content">
-								<div class="modal-body">
-	       							<div class="row">
-	       								<div class="col-md-5">
-	       									<div class="carousel-inner" role="listbox">
-	       										<img src="${pageContext.request.contextPath}/resources/img/calendar/detail_schedule_bg.png" style="height: 100%;">
-								            </div>
-	           							</div>
-	           							
-	           							<div id="template_box">
-		           							<!-- handlebars-template -->
-		           							<script id="event-template" type="text/x-handlebars-template">
+				<!-- 일정 추가 Modal-->
+				<div class="modal fade" id="add_modal" tabindex="-1" role="dialog">
+					<div class="modal-dialog" role="document">
+				    	<div class="modal-content">
+				    		<div class="modal-header">
+					        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					      	</div>
+					      	<div class="modal-body">
+					      		<form name ="add_form" id="add_form">
+					      			<span class= "form_title">일정 추가</span>
+					      			<input type="hidden" name="memberNum" value="${member_num}"/>
+					      			<input type="hidden" name="category" id="category"/>
+					      			<div class="form-group col-md-12">
+					      				<div class="wrap-input bg1">
+						      				<span class="label-input">Title</span>
+											<input type="text" class="save_input" name="title" id="title" placeholder="Enter title" required>
+						        		</div>
+						        	</div>
+							        <div class="form-group col-md-12">
+										<div class="wrap-input bg1 col-md-5">
+								            <span class="label-input">Starts at</span>
+								            <input type="date" class="save_input" name="startDate" id="startDate" required>
+							          	</div>
+										<div class="wrap-input bg1 col-md-5 col-md-offset-2">
+											<span class="label-input">Ends at</span>
+											<input type="date" class="save_input" name="endDate" id="endDate" required>
+										</div>
+							        </div>
+							        <!-- category option -->
+							        <div class="panel-group col-md-12" id="accordion" role="tablist" aria-multiselectable="true">
+								       	<div class="panel panel-default">
+						                    <div class="panel-heading" role="tab">
+						                    	<h4 class="panel-title">
+						                        	<a data-toggle="collapse" data-parent="#accordion" href="#collapse1" class="accordion">
+						                        		<span class="glyphicon glyphicon-th-list"></span>
+						                        		 Category
+						                        		<i class="fas fa-arrow-circle-down" style="position:absolute; right: 0;"></i>
+						                        	</a>
+						                        </h4>
+						                    </div>
+		                    				<div id="collapse1" class="panel-collapse collapse" role="tabpanel">
+		                    					<div class="panel-body">
+		                    						<c:forEach var="category_list" items="${category_list}">
+		                    							<button type="button" class="btn btn-primary btn-rounded category_btn" value="${category_list.id}">
+		                    								${category_list.categoryName}
+		                    							</button>
+													</c:forEach>
+	       		 								</div>
+		                    				</div>
+		                    			</div>
+		                    		</div>
+							        <div class="form-group col-md-6">
+							        	<div class="wrap-input">
+											<span class="label-input">Message</span>
+											<textarea class="input100" name="event" id="event" placeholder="상세 내용을 적어주세요."></textarea>
+										</div>
+							        </div>
+					      		</form>  
+					      	</div>
+						    <div class="modal-footer">
+						        <button type="button" class="btn btn-primary save_btn" id="save-event">Save</button>
+						    </div>
+				    	</div>  <!-- modal content endTag -->
+  					</div>
+				</div> <!-- add_modal endTag -->
+				
+				<!-- 일정 상세보기 Modal-->
+				<div class="modal fade" id="show_detail_modal" tabindex="-1" role="dialog">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-body">
+       							<div class="row">
+       								<div class="col-md-5">
+       									<div class="carousel-inner" role="listbox">
+       										<img src="${pageContext.request.contextPath}/resources/img/calendar/detail_schedule_bg.png" style="height: 100%;">
+							            </div>
+           							</div>
+           							
+           							<div id="template_box">
+	           							<!-- handlebars-template -->
+	           							<script id="event-template" type="text/x-handlebars-template">
 											<div class="event_wrap">
            										<div class="col-md-7 event_content">
 													<div>
@@ -200,74 +204,74 @@
            										</div>
 											</div>
 											</script> <!-- handlebars-template endTag -->
-										</div>
-					    			</div>  <!-- row endTag -->
-	  							</div> <!-- modal body endTag -->
-							</div> <!-- modal content endTag -->
-						</div>
+									</div>
+				    			</div>  <!-- row endTag -->
+  							</div> <!-- modal body endTag -->
+						</div> <!-- modal content endTag -->
 					</div>
+				</div> <!-- detail_modal endTag -->
+				
+				<!-- 일정 수정  Modal-->
+				<div class="modal fade" id="modify_modal" tabindex="-1" role="dialog">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+				    		<div class="modal-header">
+					        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					      	</div>
+					      	<div class="modal-body">
+					      		<form id="modify_form" role="form" action="scheduler" method="post">
+					      			<span class="form_title">일정 수정</span>
+					      			<input type="hidden" name="memberNum" value="${member_num}"/>
+					      			<input type="hidden" class="id" name="id">
+					      			<input type="hidden" class="category" name="category">
+					      			<div class="form-group col-md-12">
+					      				<div class="wrap-input bg1">
+											<input type="text" class="modify_input title" name="title">
+						        		</div>
+						        	</div>
+							        <div class="form-group col-md-12">
+										<div class="wrap-input bg1 col-md-5">
+								            <input type="date" class="modify_input startDate" name="startDate"/>
+							          	</div>
+										<div class="wrap-input bg1 col-md-5 col-md-offset-2">
+											<input type="date" class="modify_input endDate" name="endDate">
+										</div>
+							        </div>
+							        <!-- category option -->
+							        <div class="panel-group col-md-12" id="accordion" role="tablist" aria-multiselectable="true">
+								       	<div class="panel panel-default">
+						                    <div class="panel-heading" role="tab">
+						                    	<h4 class="panel-title">
+						                        	<a data-toggle="collapse" data-parent="#accordion" href="#collapse2" class="accordion">
+						                        		<span class="glyphicon glyphicon-th-list"></span>
+						                        		Category
+						                        		<i class="fas fa-arrow-circle-down" style="position: absolute; right: 0;"></i>
+						                        	</a>
+						                        </h4>
+						                    </div>
+		                    				<div id="collapse2" class="panel-collapse collapse" role="tabpanel">
+		                    					<div class="panel-body">
+		                    						<c:forEach var="category_list" items="${category_list}">
+		                    							<button type="button" class="btn btn-primary btn-rounded category_btn" value="${category_list.id}">${category_list.categoryName}</button>
+													</c:forEach>
+	       		 								</div>
+		                    				</div>
+		                    			</div>
+		                    		</div>
+							        <div class="form-group col-md-12">
+							        	<div class="wrap-input">
+											<textarea class="event" name="event" placeholder="상세 내용을 적어주세요."></textarea>
+										</div>
+							        </div>
+					      		</form>  
+					      	</div>
+						    <div class="modal-footer">
+						    	<button type="button" class="btn btn-default modify_submit_btn">OK</button>
+						    </div>
+				    	</div>  <!-- modal-content endTag -->
+  					</div> <!-- modal-dialog endTag -->
+				</div> <!-- modify_modal endTag -->
 					
-					<!-- 일정 수정  Modal-->
-					<div class="modal fade" id="modify_modal" tabindex="-1" role="dialog">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content">
-					    		<div class="modal-header">
-						        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						      	</div>
-						      	<div class="modal-body">
-						      		<form id="modify_form" role="form" action="scheduler" method="post">
-						      			<span class="form_title">일정 수정</span>
-						      			<input type="hidden" name="memberNum" value="${member_num}"/>
-						      			<input type="hidden" class="id" name="id">
-						      			<input type="hidden" class="category" name="category">
-						      			<div class="form-group col-md-12">
-						      				<div class="wrap-input bg1">
-												<input type="text" class="modify_input title" name="title">
-							        		</div>
-							        	</div>
-								        <div class="form-group col-md-12">
-											<div class="wrap-input bg1 col-md-5">
-									            <input type="date" class="modify_input startDate" name="startDate"/>
-								          	</div>
-											<div class="wrap-input bg1 col-md-5 col-md-offset-2">
-												<input type="date" class="modify_input endDate" name="endDate">
-											</div>
-								        </div>
-								        <!-- category option -->
-								        <div class="panel-group col-md-12" id="accordion" role="tablist" aria-multiselectable="true">
-									       	<div class="panel panel-default">
-							                    <div class="panel-heading" role="tab">
-							                    	<h4 class="panel-title">
-							                        	<a data-toggle="collapse" data-parent="#accordion" href="#collapse2" class="accordion">
-							                        		<span class="glyphicon glyphicon-th-list"></span>
-							                        		Category
-							                        		<i class="fas fa-arrow-circle-down" style="position: absolute; right: 0;"></i>
-							                        	</a>
-							                        </h4>
-							                    </div>
-			                    				<div id="collapse2" class="panel-collapse collapse" role="tabpanel">
-			                    					<div class="panel-body">
-			                    						<c:forEach var="category_list" items="${category_list}">
-			                    							<button type="button" class="btn btn-primary btn-rounded category_btn" value="${category_list.id}">${category_list.categoryName}</button>
-														</c:forEach>
-		       		 								</div>
-			                    				</div>
-			                    			</div>
-			                    		</div>
-								        <div class="form-group col-md-12">
-								        	<div class="wrap-input">
-												<textarea class="event" name="event" placeholder="상세 내용을 적어주세요."></textarea>
-											</div>
-								        </div>
-						      		</form>  
-						      	</div>
-							    <div class="modal-footer">
-							    	<button type="button" class="btn btn-default modify_submit_btn">OK</button>
-							    </div>
-					    	</div>  <!-- modal-content endTag -->
-	  					</div> <!-- modal-dialog endTag -->
-					</div> <!-- add_modal endTag -->
-				</div>
 			</div> <!-- .row endTag -->
 		</div> <!-- .content endTag -->
 	</div> <!-- .wrapper endTag -->
@@ -364,9 +368,7 @@
 	    	},
 	    	events:function(info, successCallback, failureCallback){
 	    		// 서버에서 받아온 데이터를 캘린더에 셋팅
-	 	  		var schedule_list = '<c:out value="${schedule_list}"/>';
-	 	  		
-	    		if(schedule_list != '' || schedule_list != null){
+				<c:if test = "${not empty schedule_list}">
 		    		var events = new Array();
 		    		<c:forEach items='${schedule_list}' var='schedule'>
 		    		
@@ -392,8 +394,8 @@
 							}); 
 		    			
 		    		</c:forEach>
-		    		successCallback(events);
-	    		} 
+	    			successCallback(events);
+	    		</c:if>
 	    	} //** event end tag **/
 	  	}); //** calendar end tag **//
 	  

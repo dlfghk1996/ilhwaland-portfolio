@@ -2,6 +2,7 @@ $(document).ready(function(){
 	// swal alert 플러그인 사용법  
  	// swal parameter => swal(title, text, icon(success, info, warning, error)) 
  		 
+ 		 
 	// 일정 상세 보기 
 	$('#show_detail_modal').on('show.bs.modal', function (e) {
 		$.ajax({
@@ -27,15 +28,39 @@ $(document).ready(function(){
 		});
 	});
 	
+	
+	// 일정 추가 모달 open시 default 값 할당
+	$('#add_modal').on('show.bs.modal', function (e) {
+		
+		var today = moment().format('YYYY-MM-DD');
+		$('#startDate').val(today);
+		$('#endDate').val(today);
+		
+		$('#collapse1 .category_btn').each(function (index,item){
+			if($(item).val() == 0){
+				$(item).addClass('select');
+				$('#category').val($(item).val());
+			}
+		});
+	});
+
+
 	// 일정 추가 
 	$(document).on('click','#save-event',function(){
+        if($('#title').val() == null || $('#title').val() == '' || $('#event').val() == null || $('#event').val() == ''){
+        	 swal('일정 타이틀을 입력해주세요');
+        	 return false;
+        }
+        
 		$.ajax({
 			type: 'POST',
 			url:  'scheduler',
 			data: $('#add_form').serialize(), 
 			success: function(result,textStatus,jqXHR) {
 				swal('Success!','일정이 등록되었습니다 !', 'success');
-		
+		        
+		        $('#add_modal').modal('hide');
+				// 이벤트 요소 추가
 				var start_date = moment(result.startDate).format('YYYY-MM-DD');
 		    	var end_date = moment(result.endDate).format('YYYY-MM-DD');
 		    	
@@ -50,20 +75,20 @@ $(document).ready(function(){
 			    			title: result.title, 
 			    			start: start_date, 
 			    			end: end_date, 
+			    			event_detail: result.event,
 			    			className: 'event_'+result.id,
 			    			category: result.scheduleCategory.categoryName,
 			    			category_num: result.scheduleCategory.id,
 			    			color : result.scheduleCategory.color
 		    			}];
 				calendar.addEventSource(new_event);
-				
-				$('#add_modal').modal('hide');
 	        },
 	        error: function(result, textStatus, jqXHR) {
 	        	swal(result.status + ' Error!', '등록을 실패하였습니다.!', 'error');
 	        }
 		});
 	})
+	
 	
 	// 일정 추가시 카테고리 선택 (일정 추가 & 일정 수정시 발생)
 	$(document).on('click','.category_btn',function(){
@@ -76,7 +101,6 @@ $(document).ready(function(){
 	 	}else{
 	 		$(this).addClass('select');
 	 		$(input).val($(this).val());
-	 		
 	 	}
 	})
 	
@@ -122,10 +146,10 @@ $(document).ready(function(){
 		});
 	})
 	
+	
 	// 일정 삭제 
 	$(document).on('click','.delete_btn',function(){ 
 		var num = $(this).data('num');
-		alert(num);
 		$.ajax({
 			type: 'DELETE',
 			url:  'scheduler/'+num,
@@ -142,7 +166,6 @@ $(document).ready(function(){
 	       			window.location = 'notFound_error';
 	       		}
 	       		swal(result.status + ' Error!', result.responseText +'!', 'error');
-	        
 	        }
 		});
 	})

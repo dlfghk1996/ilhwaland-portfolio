@@ -19,7 +19,7 @@
 	
 	<!-- 게시글 전체 출력 -->
 	<select id="selectBoardList" parameterType="com.kim.ilhwaland.dto.Board" resultType="com.kim.ilhwaland.dto.Board">
-		SELECT a.* 
+		SELECT a.*, (SELECT COUNT(*) FROM boardreply br WHERE br.board_num = a.board_num) as reply_count 
 	   	FROM 
 			(SELECT rownum as rnum, board_num,subject,content,writer_id,TO_CHAR(register_date, 'YY-MM-DD') as register_date,read_num 
 		  	 FROM board 

@@ -12,6 +12,7 @@ public class Board {
 	private int read_num;         // 조회수
 	
 	// 디비 조회 관련 변수
+	private int reply_count;
 	private int rnum;
 	private int start;
 	private int end;
@@ -138,6 +139,14 @@ public class Board {
 		this.search_option = search_option;
 	}
 
+	public int getReply_count() {
+		return reply_count;
+	}
+
+	public void setReply_count(int reply_count) {
+		this.reply_count = reply_count;
+	}
+	
 	@Override
 	public String toString() {
 		return "Board [board_num=" + board_num + ", subject=" + subject + ", content=" + content + ", writer=" + writer

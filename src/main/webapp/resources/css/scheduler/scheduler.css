@@ -58,7 +58,6 @@ textarea {
 	border: 1px solid #673535;
     border-radius: 13px;
     padding: 10px 30px 9px 22px;
-    margin-bottom: 20px;
     background-color: white;
 }
 
@@ -97,7 +96,11 @@ textarea {
 #add_modal .modal-content {
   	background-color: #e8e8e8;
 }
-   
+  
+#add_moal .modal-footer {
+	padding-top: 0 !important; 
+} 
+
 #add_form .form-group:last-child .wrap-input {
    	min-height: 120px;
    	padding-top: 9px;
@@ -273,3 +276,13 @@ p.category_title {
 	width: 80%;
     float: left;
 }
+
+.fc-daygrid-body, .fc-scrollgrid-sync-table, .fc-col-header {
+	width: 100%;
+}
+
+.modal-open { padding-right: 0px !important; }
+
+.modal { padding-right: 0px !important; }
+
+

@@ -60,10 +60,10 @@
 						<form id="address_form" action="weather" method="POST">
 							<div class="form-group">             
 								<button type="button" class="btn btn-secondary getGeolocation_btn">현재 내 위치<i class="far fa-compass"></i></button>   
-								<input class="form-control" placeholder="${empty address?'주소':address}" onClick="getAddress();" name="address" id="address" type="text" readonly>
+								<input class="form-control" placeholder="${empty address?'주소':address}" name="address" id="address" type="text" readonly>
 								<input type="hidden" name="longitude">
 								<input type="hidden" name="latitude">
-				    			<button type="button" class="btn btn-default getAddress_btn" onClick="getAddress();">주소 검색<i class="fas fa-search"></i></button>                               
+				    			<button type="button" class="btn btn-default getAddress_btn">주소 검색<i class="fas fa-search"></i></button>                               
 							</div>
 						</form>
 					</div>
@@ -164,37 +164,38 @@
 <script src="${pageContext.request.contextPath}/resources/js/weather/weather.js"></script>
 
 <script type="text/javascript">
-
-	// 주소찾기 API
-	function getAddress(){
-		new daum.Postcode({
-			// 여러개의 팝업창이 뜨는 것을 방지하기 위해 팝업창의 Key값을 지정
-			popupKey: 'popup1', 
-	        oncomplete: function(data) {
-	        	// 팝업에서 검색결과 항목을 클릭했을시 실행
-	          	// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-	          	var addr='';
-	            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-	                addr = data.roadAddress;
-	            
-	            } else { 							 // 사용자가 지번 주소를 선택했을 경우
-	                addr = data.jibunAddress;
-	            }
-	
-	            $('[name=address]').val(addr);
-	            getGeocode(addr);
-	        }
-	    }).open();
-	}
-
 	$(document).ready(function(){
 		
 		// 페이지가 로드되면 세차장 안내 팝업창 open.
 		showWeatherServicePopup();
 		
-		function showWeatherServicePopup(){ // 해당 위치의 날씨를 기반으로 한 세차 추천 팝업
-			window.open('weatherService_popup',"weatherService","width=470, height=490, top=10, left=10");
-	    }
+		// 해당 위치의 날씨를 기반으로 한 세차 추천 팝업
+		function showWeatherServicePopup(){ 
+			var popup = window.open('weatherService_popup','weatherService','width=470, height=490, top=10, left=10');
+			popup.focus();
+		}
+		
+		// 주소찾기 API
+		$('.getAddress_btn').click(function(){
+			new daum.Postcode({
+				// 여러개의 팝업창이 뜨는 것을 방지하기 위해 팝업창의 Key값을 지정
+				popupKey: 'popup1', 
+		        oncomplete: function(data) {
+		        	// 팝업에서 검색결과 항목을 클릭했을시 실행
+		          	// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+		          	var addr='';
+		            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+		                addr = data.roadAddress;
+		            
+		            } else { 							 // 사용자가 지번 주소를 선택했을 경우
+		                addr = data.jibunAddress;
+		            }
+		
+		            $('[name=address]').val(addr);
+		            getGeocode(addr);
+		        }
+		    }).open();
+		})
 		
 		// 주소  => 위도,경도 좌표로 변환  
 		function getGeocode(addr) {
@@ -252,10 +253,7 @@
 			  }
 		}	
 		
-
 	 });
-
 </script>
 </body>
 </html>
-

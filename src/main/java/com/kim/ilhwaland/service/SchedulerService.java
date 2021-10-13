@@ -27,11 +27,12 @@ public class SchedulerService {
 	@Transactional
 	public int addSchedule(Schedule input) throws Exception {
 		
+		// 사용자가 선택한 카테고리의 PK를 스케줄객체의 카테고리 필드에 저장
 		ScheduleCategory category = new ScheduleCategory();
 		category.setId(Integer.parseInt(input.getCategory()));
-
 		input.setScheduleCategory(category);
 		
+		// Insert 후 스케줄 PK 반환
 		input = schedulerRepository.saveAndFlush(input);
 		int newSchedule_num = input.getId();
 		return newSchedule_num;

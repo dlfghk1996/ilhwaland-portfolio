@@ -53,7 +53,7 @@ public class CalendarController {
 	
 		model.addAttribute("schedule_list", schedule_list);
 		model.addAttribute("category_list", category_list);
-
+		
 		return "scheduler/scheduler";
 	}
 	

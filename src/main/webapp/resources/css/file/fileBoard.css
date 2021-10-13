@@ -37,11 +37,27 @@ table th {
     text-align: center;
 }
 
+.table_container .tab-content {
+	table-layout: fixed;
+    width: max-content;
+}
+
 .modal-body .uploadOption {
 	display: none;
     position: absolute;
     top: 0;
     left: 15%;
+}
+
+.modal-dialog{
+    width: auto;
+    display: table;
+    overflow-x: initial !important;
+}
+
+.modal-body{
+    overflow-x: auto;
+    max-width: 1200px;
 }
 
 #content_detail h3 {

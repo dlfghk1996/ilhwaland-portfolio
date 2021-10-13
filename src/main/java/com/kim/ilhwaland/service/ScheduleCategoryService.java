@@ -21,6 +21,9 @@ public class ScheduleCategoryService {
 	@Transactional
 	public List<ScheduleCategory> getCategoryList(Integer input1,Integer input2) throws Exception {
 		List<ScheduleCategory> result = scheduleCategoryRepository.findAllByMemberNumOrId(input1, input2);
+		for(ScheduleCategory s: result) {
+			System.out.println(s.toString());
+		}
 		return result;
 	}
 	

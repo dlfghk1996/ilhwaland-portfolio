@@ -17,7 +17,7 @@ public interface ScheduleCategoryRepository extends JpaRepository<ScheduleCatego
 	List<ScheduleCategory> findAllByMemberNumOrId(Integer input,Integer input2);
 	
 	// 중복 카테고리 유무 확인
-	@Query(nativeQuery = true, value="select count(sc.category_num) FROM schedulecategory sc WHERE sc.member_num = :member_num AND sc.category_name = :category_name")
+	@Query(nativeQuery = true, value="select count(sc.category_num) FROM schedulecategory sc WHERE sc.member_num = :member_num AND sc.category_name = :category_name ORDER BY sc.category_num")
 	long findByMemberNumAndCategoryName(@Param("member_num") Integer memberNum, @Param("category_name") String categoryName); 
 	
 }

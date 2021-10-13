@@ -8,10 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -35,8 +32,8 @@ public class FileApi {
    public static String sheetnames = null;
    
    // xlxs 데이터 반환 객체
-   public static Map<String,List<List<String>>> sheetMap = new LinkedHashMap<String,List<List<String>>>();   // map<<sheetname, sheet<행<열>>>
    public static List<List<String>> rows = new ArrayList<List<String>>(); // sheet<행<열>>
+   public static List<SheetHelper> sheet_list = new ArrayList<SheetHelper>();   // map<<sheetname, sheet<행<열>>>
    
    /** 1. xls, xlsx 읽기*/
    // 단일 시트 또는 파일의 모든 시트를 가져 오기
@@ -77,17 +74,18 @@ public class FileApi {
 			
 			InputStream sheet = itr.next();
 			sheetnames = itr.getSheetName();
-				
 			// 8. 엔티티를 읽기 위해 XMLReader에 필요한 정보를 캡슐화 한다. -> 읽을 InputSource 반환
 		    InputSource sheetSource = new InputSource(sheet);
 
 		    // 9. source로 입력된 XML문서를 파싱하면서 SAX이벤트를 발생 => SheetHadler로 sheet를 읽는다.
 		    xmlReader.parse(sheetSource);
-		        
-		    sheetMap.put(sheetnames,rows);
-		    rows = new ArrayList<List<String>>();
 		    
-			sheet.close();
+		    sheet_list.add(new SheetHelper(i,sheetnames,rows)); //TEST 코드
+		    
+		    // 각 시트를 읽고 list를 초기화 한다.(ex. 바구니 비우기)
+		    rows = new ArrayList<List<String>>();
+			
+		    sheet.close();
 		}
       
        // 10. xml 문서 안의 정보들이 파싱되면서 순서대로 이벤트가 ContentHandler을 통해서 호출된다
@@ -100,7 +98,7 @@ public class FileApi {
 	   
 	   List<String[]> csvList = new ArrayList<String[]>(); // 전체 행을 담는 list
 	  
-	   /* CSV 는 다양한 방식으로 나타내기 때문에, 구문 분석 할수 있는 CSV 형식을 정한다.
+	   /* CSV 는 다양한 방식으로 나타내기 때문에,구문 분석 할수 있는 CSV 형식을 정한다.
 	   	    - 정해진 형식 : DEFAULT, EXCEL, RFC4180 등
 	   	    - @withQuote : 따옴표 문자를 설정하거나 비활성화 설정 
 	   */
@@ -127,7 +125,7 @@ public class FileApi {
 	
    }
    
-   /** CSV 형식 지정 EXCEL, TDF)  */
+   /** CSV 형식 지정 (EXCEL, TDF)  */
    public List<String[]> csvParser(CSVFormat csvFormat, File file) throws Exception {
 	   
 	   // 1. 각 파일의 인코딩을 체크한다
@@ -151,10 +149,11 @@ public class FileApi {
 		   String [] row = new String[record.size()];
 		   // 행 의 열 길이만큼 반복문 실행 
 		   for (String field : record) {
+			   row[i++] = field;
 			   // 최대 출력가능한 열 길이 제한(15)
-			   if(i < 16) {
-				   row[i++] = field;
-			   }
+			  // if(i < 16) {
+				  // row[i++] = field;
+			  // }
 		   }
 		   csvList.add(row);
 	   }

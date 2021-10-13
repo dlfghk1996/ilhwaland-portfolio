@@ -36,3 +36,7 @@ h2 {
 .search_form > form > select.selectpicker {
 	width: 10%;
 }
+
+.reply_count {
+	color : #8a85e2;
+}

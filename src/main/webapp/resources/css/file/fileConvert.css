@@ -5,14 +5,16 @@
 	border: 3px dotted #9191c594;
 	padding: 10px;
 	border-radius: 50px;
+	overflow: hidden;
 }
 
 .dropZone{
 	background: #ccc;
-       height: 400px;
+    height: 315px;
 	border-radius: 50px;
 	position: relative;
-	margin-top: 33px;
+	float: left;
+    width: 50%;
 }
 
 .dropZone * {
@@ -20,26 +22,32 @@
 	font-weight: 700;
 }
 
-.dropZone h2{
-	top: 50%;
-   	left: 33%;
-	color: white;
-	position: absolute;
+.drop_text .img_box {
+    width: 300px;
+    margin: 0 auto;
 }
 
-.dropZone span{
-   	position: absolute;
-   	top: 65%;
-   	left: 26%;
-   	font-weight: 700;
-   	font-size: 15px;
+.img_box img {
+	width: 100%;
 }
 
-.dropZone img{
-   	width: 35%;
-   	position: absolute;
- 	top: 4%;
-   	left: 32%;
+.drop_text { 
+	padding-top: 25px;
+ 	overflow: hidden;
+ 	text-align: center;
+ 	float: left;
+    width: 50%;
+}
+
+.intput_box {
+	 display: inline-block;
+     line-height: 25px;
+}  
+  
+.intput_box h2 {
+	color: gray;
+	font-size: 18px;
+    font-weight: bold;
 }
 
 	

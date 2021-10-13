@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 #sidebar {
-    width: 120px;
+    width: 130px;
     position: fixed;
     top: 0;
     left: 0;
@@ -10,10 +10,18 @@
     background: #7386D5;
     color: #fff;
     transition: all 0.3s;
+    text-align: center;
+    font-size: 12px;
 }
 
 #sidebar.active {
     margin-left: -250px;
+}
+
+a[aria-expanded="true"] {
+    color: #c9eeff;
+    background: #2d3970a8;
+    font-weight: bold;
 }
 
 #sidebar .sidebar-header {
@@ -33,7 +41,7 @@
 }
 
 #sidebar ul li a {
-    padding: 10px;
+    padding: 10px !important;
     font-size: 1.1em;
     display: block;
 }
@@ -41,12 +49,6 @@
 #sidebar ul li a:hover {
     color: #7386D5;
     background: #fff;
-}
-
-#sidebar ul li.active>a,
-a[aria-expanded="true"] {
-    color: #fff;
-    background: #6d7fcc;
 }
 
 a[data-toggle="collapse"] {
@@ -64,7 +66,7 @@ a[data-toggle="collapse"] {
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #6d7fcc;
+    background: #2d3970a8;
 }
 
 ul.CTAs {

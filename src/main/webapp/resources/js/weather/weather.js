@@ -9,7 +9,7 @@ $(document).ready(function(){
 	$('.timeline_slides_next').click(function() {
 		for(var i=0; i<3; i++){
 			var heigth = $('.timelineWeather').eq(i).outerHeight(true);
-			$('.timelineWeather').eq(i).css({'margin-top' : '-191.77px'});
+			$('.timelineWeather').eq(i).css({'margin-top' : '-195px'});
 		}
 	
 		// 이전 버튼 visible

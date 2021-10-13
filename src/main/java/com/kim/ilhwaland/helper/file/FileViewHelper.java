@@ -5,7 +5,7 @@ import java.util.Map;
 
 /** 읽은 파일의 내용을 담기위한 파일 타입별 객체 설정 */
 public class FileViewHelper {
-	private Map<String,List<List<String>>> excelMap; //.xls, xlxs 데이터
+	private List<SheetHelper> sheetHelper; //.xls, xlxs 데이터
 	private List<List<String>> excelList;   //.xls, xlxs 데이터
 	private List<String[]> csvList;         // .csv 파일
 	private List<String> txtList;           // .txt 파일
@@ -19,6 +19,12 @@ public class FileViewHelper {
 	}
 	public void setExcelList(List<List<String>> excelList) {
 		this.excelList = excelList;
+	}
+	public List<SheetHelper> getSheetHelper() {
+		return sheetHelper;
+	}
+	public void setSheetHelper(List<SheetHelper> sheetHelper) {
+		this.sheetHelper = sheetHelper;
 	}
 	public List<String[]> getCsvList() {
 		return csvList;
@@ -43,11 +49,5 @@ public class FileViewHelper {
 	}
 	public void setFileType(String fileType) {
 		this.fileType = fileType;
-	}   
-	public Map<String, List<List<String>>> getExcelMap() {
-		return excelMap;
-	}
-	public void setExcelMap(Map<String, List<List<String>>> excelMap) {
-		this.excelMap = excelMap;
-	}
+	} 
 }
