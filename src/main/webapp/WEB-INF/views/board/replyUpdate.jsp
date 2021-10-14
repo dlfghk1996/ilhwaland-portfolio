@@ -14,14 +14,14 @@
 	<div class="form_box">
 		<form action="replyUpdate" method="POST" id="replyUpdate_form">
 			<fieldset>
-				<input type="hidden" name="reply_num" id="reply_num">
+				<input type="hidden" name="reply_num" id="reply_num" value="${boardReply.reply_num}">
 				<div class="wrap_writer">
 					<label>작성자</label>
-					<input type="text" name="reply_writer_nickname" id="reply_writer_nickname" class="form-control" required>
+					<input type="text" name="reply_writer_nickname" id="reply_writer_nickname" class="form-control" value="${boardReply.reply_writer_nickname}"required>
 				</div>
 				<div class="wrap_content">
 					<label>내용</label>
-					<textarea style="resize: both;" name="reply" id="reply" class="reply form-control" required></textarea>
+					<textarea style="resize: both;" name="reply" id="reply" class="reply form-control" required>${boardReply.reply}</textarea>
 				</div>	
 				<div class="wrap_btn">
 					<input type="submit" class="btn btn_submit replyUpdate_btn" value="확인">
@@ -37,7 +37,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script> 
 <script type="text/javascript">
 	
-	/* 부모창에서 해당 댓글의 값을 가져온다. **/
+	/* 부모창에서 해당 댓글의 값을 가져온다.
 	// popover 창에서 가져온다.
 	var reply_num = $('#reply_num', opener.document).val();  
 	// 댓글목록에서 해당 댓글의 값을 가져온다.
@@ -48,7 +48,7 @@
 	$('#reply_num').val(reply_num);
 	$('#reply_writer_nickname').val(reply_writer_nickname);
 	$('#reply').val(reply);
-
+	 **/
 	$('#replyUpdate_form').validate({
 		rules:{
 			reply_writer_nickname:{required: true},

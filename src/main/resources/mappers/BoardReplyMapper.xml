@@ -14,7 +14,10 @@
 	
 	<!-- 해당 게시글 댓글 출력 -->
 	<select id="selectBoardReply"  parameterType="int" resultType="com.kim.ilhwaland.dto.BoardReply">
-		SELECT reply_num, board_num, reply_writer_nickname, reply, TO_CHAR(register_date, 'YY-MM-DD') as register_date FROM boardreply WHERE board_num = ${value}
+		SELECT reply_num, board_num, reply_writer_nickname, reply, TO_CHAR(register_date, 'YY-MM-DD') as register_date 
+		FROM boardreply 
+		WHERE board_num = ${value}
+		ORDER BY reply_num
 	</select>
 	
 	<!-- 댓글 수정 -->
@@ -36,4 +39,8 @@
 		SELECT count(*) FROM boardreply WHERE reply_num = ${reply_num} AND reply_password = ${reply_password}
 	</select>
 	
+	<!-- 수정 할 댓글 조회 -->
+	<select id="selectReply"  parameterType="int" resultType="com.kim.ilhwaland.dto.BoardReply">
+		SELECT * FROM boardreply WHERE reply_num = #{reply_num} 
+	</select>
 </mapper>

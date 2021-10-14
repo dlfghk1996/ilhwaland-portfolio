@@ -82,7 +82,16 @@ $(document).on('click','.replyPasswordCheck_btn', function(e) {
 					getReplyList();
 				// 댓글 수정
 				}else{
-					window.open('replyUpdatePage', 'replyModify', 'width=450, height=450, resizable=yes'); 
+					window.open('', 'replyModify', 'width=450, height=450, resizable=yes'); 
+					
+        			var form = $('<form></form>'); 
+        			form.attr('name','update_form'); 
+        			form.attr('method','post'); 
+        			form.attr('action','replyUpdatePage'); 
+        			form.attr('target','replyModify'); 
+        			form.append($('<input/>', {type: 'hidden', name:'reply_num', value: $('#reply_num').val()}));
+        			form.appendTo('body');
+        			update_form.submit();
 				} 
 			},
 			error: function(result, textStatus, jqXHR) {

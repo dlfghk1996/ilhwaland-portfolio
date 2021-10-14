@@ -11,6 +11,7 @@
 	<link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" /> <!-- alert 플러그인 -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-contextmenu@2.9.2/dist/jquery.contextMenu.min.css"> <!-- contextMenu 플러그인 -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.3/css/bootstrap-colorpicker.css" rel="stylesheet"> <!-- colorpicker 플러그인 -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"/> <!-- datepicker 플러그인 -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/commons.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/sidebar.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/scheduler/scheduler.css">
@@ -110,17 +111,20 @@
 							        <div class="form-group col-md-12">
 										<div class="wrap-input bg1 col-md-5">
 								            <span class="label-input">Starts at</span>
-								            <input type="date" class="save_input" name="startDate" id="startDate" required>
+								            <!--<input type="date" class="save_input" name="startDate" id="startDate" required>  -->
+								            <input type="text" class="save_input" name="startDate" id="startDate" required>
 							          	</div>
 										<div class="wrap-input bg1 col-md-5 col-md-offset-2">
 											<span class="label-input">Ends at</span>
-											<input type="date" class="save_input" name="endDate" id="endDate" required>
+											<!--<input type="date" class="save_input" name="endDate" id="endDate" required>-->
+											<input type="text" class="save_input" name="endDate" id="endDate" required>
 										</div>
 							        </div>
 							        <!-- category option -->
 							        <div class="panel-group col-md-12">
 								       	<div class="panel panel-default">
-		                    				<div id="collapse1" class="panel-collapse collapse">
+		                    				<div id="collapse1">
+		                    					<div class="panel-heading">카테고리</div>
 		                    					<div class="panel-body">
 		                    						<c:forEach var="category_list" items="${category_list}">
 		                    							<button type="button" class="btn btn-primary btn-rounded category_btn" value="${category_list.id}">
@@ -138,7 +142,7 @@
 										</div>
 							        </div>
 							        <div>
-							        	<input type="submit" class="btn btn-primary save_btn" id="save-event" value="등록">
+							        	<button type="submit" class="btn btn-primary save_btn" id="save-event">등록</button>
 					      			</div>
 					      		</form>  
 					      	</div>
@@ -222,10 +226,12 @@
 						        	</div>
 							        <div class="form-group col-md-12">
 										<div class="wrap-input bg1 col-md-5">
-								            <input type="date" class="modify_input startDate" name="startDate"/>
+								            <!--<input type="date" class="modify_input startDate" name="startDate"/>-->
+								            <input type="text" class="modify_input startDate" id="modify_startDate" name="startDate"/>
 							          	</div>
 										<div class="wrap-input bg1 col-md-5 col-md-offset-2">
-											<input type="date" class="modify_input endDate" name="endDate">
+											<!--<input type="date" class="modify_input endDate" name="endDate">-->
+											<input type="text" class="modify_input endDate" id="modify_endDate" name="endDate">
 										</div>
 							        </div>
 							        <!-- category option -->
@@ -279,7 +285,8 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.3/js/bootstrap-colorpicker.js"></script> <!--colorpicker 플러그인  -->
 	<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>  <!-- Tooltip 플러그인  -->
 	<script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>      <!-- Tooltip 플러그인  -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>   <!-- datepicker 플러그인  -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>   <!-- validate 플러그인  -->
 	<script src="${pageContext.request.contextPath}/resources/js/calendar/jQuery_serializeObject.js"></script>
 	<script type="text/javascript">
 	
@@ -416,8 +423,9 @@
 		
 	}); //** document end tag **//
  	
-</script>
+	</script>
 	<script src="${pageContext.request.contextPath}/resources/js/calendar/scheduler.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/calendar/category.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/calendar/datepicker.js"></script>
 </body>
 </html>

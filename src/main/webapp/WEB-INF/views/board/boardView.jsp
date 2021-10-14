@@ -61,7 +61,7 @@
 					  			<label for="reply">Comment:</label>
 					  			<div>
 					  				<textarea class="form-control" rows="3" cols="30" id="reply" name="reply" placeholder="댓글을 입력하세요" required></textarea>
-					  				<input type="submit" class="btn btn-default" id="reply_btn" value="등록">
+					  				<button type="submit" class="btn btn-default" id="reply_btn">등록</button>
 					  			</div>
 							</div>
 						</form>

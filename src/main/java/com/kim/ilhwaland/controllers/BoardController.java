@@ -87,8 +87,10 @@ public class BoardController {
 	}
 	
 	/** [VIEW] 댓글 수정 페이지 */
-	@RequestMapping(value = "replyUpdatePage", method = RequestMethod.GET)
-	public String replyUpdatePage() {
+	@RequestMapping(value = "replyUpdatePage", method = RequestMethod.POST)
+	public String replyUpdatePage(@RequestParam(value="reply_num") int reply_num, Model model) {
+		BoardReply boardReply = boardReplyDao.getBoardReply(reply_num);
+		model.addAttribute("boardReply", boardReply);
 		return "board/replyUpdate";
 	}
 	

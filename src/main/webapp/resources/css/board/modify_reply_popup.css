@@ -38,3 +38,7 @@ textarea {
 .wrap_btn {
 	float: right;
 }
+
+.replyUpdate_btn {
+	width: 20px;
+}

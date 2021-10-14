@@ -64,4 +64,15 @@ public class BoardReplyDaoImpl implements BoardReplyDao{
 			throw new BadRequestException();
 		}
 	}
+	
+	/** 4) 수정 할 댓글 조회 */
+	@Override
+	public BoardReply getBoardReply(int input) {
+		BoardReply result = null;
+		result = sqlSession.selectOne("BoardReplyMapper.selectReply",input);
+		if(result == null) {
+			throw new NullPointerException("댓글 조회 중 에러 발생");
+		}
+		return result;
+	}
 }

@@ -9,7 +9,7 @@ public interface BoardReplyDao {
 	// 댓글 등록
 	public int setReply(BoardReply input)throws Exception;
 	
-	// 해당 게시글 댓글 출력
+	// 해당 게시글 댓글 모두 출력
 	public List<BoardReply> getReplyList(int input)throws Exception;
 	
 	// 댓글 수정
@@ -20,5 +20,8 @@ public interface BoardReplyDao {
 	
 	// 비밀번호 확인
 	public void replyPwCheck(BoardReply input) throws Exception;
+	
+	// 수정 할 댓글 출력
+	public BoardReply getBoardReply(int input);
 	
 }

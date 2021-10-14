@@ -47,15 +47,19 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script> <!-- summernote 플러그인 -->
 	<script src="${pageContext.request.contextPath}/resources/js/board/summernote.js"></script>
-	$('#board-form').validate({
-		rules:{
-			subject:{required: true},
-			content:{required: true}
-		},
-		message:{
-			subject:{required: '게시물명은 필수 입력입니다.'},
-			content:{required: '게시글은 필수 입력입니다.'}
-		}
-	})
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+	<script type="text/javascript">
+		$('#board-form').validate({
+			rules:{
+				subject:{required: true},
+				content:{required: true}
+			},
+			message:{
+				subject:{required: '게시물명은 필수 입력입니다.'},
+				content:{required: '게시글은 필수 입력입니다.'}
+			}
+		})
+	</script>
+	
 </body>
 </html>

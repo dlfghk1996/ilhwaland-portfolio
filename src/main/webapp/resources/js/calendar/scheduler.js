@@ -59,7 +59,6 @@ $(document).ready(function(){
 			}
 		},
 		submitHandler:function(){
-			alert('hi');
 			$.ajax({
 				type: 'POST',
 				url:  'scheduler',

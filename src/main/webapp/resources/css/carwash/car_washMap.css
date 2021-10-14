@@ -59,7 +59,7 @@
 }
 
 .carwash_post_wrap {
-	overflow: hidden;
+	overflow: auto;
     position: relative;
     float: left;
     width: 30%;

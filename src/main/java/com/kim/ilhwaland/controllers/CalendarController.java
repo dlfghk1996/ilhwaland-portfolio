@@ -72,6 +72,7 @@ public class CalendarController {
 	@PostMapping("scheduler")
 	public ResponseEntity<Schedule> addSchedule(Schedule schedule) {
 		try {
+			System.out.println(schedule.toString());
 			int num = schedulerService.addSchedule(schedule); // 저장
 			schedule = schedulerService.getSchedule(num);     // 저장 한 값 불러오기
 		} catch (Exception e) {
