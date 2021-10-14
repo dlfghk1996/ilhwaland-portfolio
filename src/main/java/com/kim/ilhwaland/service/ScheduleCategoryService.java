@@ -20,10 +20,8 @@ public class ScheduleCategoryService {
 	/** 접속중인 회원이 가진 카테고리 전체 가져오기 + 기본 카테고리 포함  */
 	@Transactional
 	public List<ScheduleCategory> getCategoryList(Integer input1,Integer input2) throws Exception {
-		List<ScheduleCategory> result = scheduleCategoryRepository.findAllByMemberNumOrId(input1, input2);
-		for(ScheduleCategory s: result) {
-			System.out.println(s.toString());
-		}
+		List<ScheduleCategory> result = scheduleCategoryRepository.findAllByMemberNumOrIdOrderById(input1, input2);
+		
 		return result;
 	}
 	

@@ -11,18 +11,24 @@ $(function(){
     	
 		var value = $(".add_category_box input[name='categoryName']").val();
     	var color = $('.add_category_box .color').val();
-    	$.ajax({
-			type: 'POST',
-			url:  'scheduleCategory',
-			contentType: 'application/json; charset=UTF-8',
-			data : JSON.stringify({'categoryName': value, 'color': color, 'memberNum': member_num}),
-			success: function(result, textStatus, jqXHR) {
-				location.reload();
-	        },
-	       	error: function(jqXHR, textStatus) {
-	       		swal(jqXHR.status + ' Error!',  jqXHR.responseText +'!', 'error');
-	        }
-		});
+    	
+    	if(value != ''){
+    		$.ajax({
+				type: 'POST',
+				url:  'scheduleCategory',
+				contentType: 'application/json; charset=UTF-8',
+				data : JSON.stringify({'categoryName': value, 'color': color, 'memberNum': member_num}),
+				success: function(result, textStatus, jqXHR) {
+					location.reload();
+		        },
+		       	error: function(jqXHR, textStatus) {
+		       		swal(jqXHR.status + ' Error!',  jqXHR.responseText +'!', 'error');
+		        }
+			});
+    	}else {
+    		alert('카테고리명을 입력해주세요.');
+    	}
+    	
 	})
 	
   	// 카테고리 삭제

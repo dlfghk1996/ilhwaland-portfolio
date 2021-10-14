@@ -78,7 +78,6 @@ public class CalendarController {
 			System.out.println(e.getMessage());
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
 		return new ResponseEntity<Schedule>(schedule, HttpStatus.OK);  
 	}
 	
@@ -120,6 +119,7 @@ public class CalendarController {
 	@ResponseBody
 	@PutMapping("scheduler")
 	public ResponseEntity<?> modifySchedule(@RequestBody Schedule schedule) {
+		System.out.println("일정 수정");
 		try {
 			schedulerService.modifySchedule(schedule);
 			

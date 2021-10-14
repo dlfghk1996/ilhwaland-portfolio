@@ -1,20 +1,35 @@
-// 1. 댓글 등록
-$('#reply_btn').click(function(){
-	$.ajax({
-		data : $('#reply_form').serialize(),
-		type : 'POST',
-		url : 'replyWrite',
-		success : function(data) {
-			// 댓글 작성 form 초기화
-			$('#reply_form').find('.form-group input, .form-group textarea').val(''); 
-		         
-			//댓글 목록 리스트 출력
-			getReplyList();
+
+$('#reply_form').validate({
+	rules:{
+		reply_writer_nickname:{required: true},
+		reply_password:{required: true,rangelength : [4,6]},
+		reply:{required: true}
+	},
+	message:{
+		reply_writer_nickname:{required: '닉네임은 필수 입력입니다.'},
+		reply_password:{
+			required: '비밀번호는 필수 입력입니다.',
+			rangelength : '비밀번호는 4-6까지 입력입니다.'
 		},
-		error: function(result, textStatus, jqXHR) {
-			window.location = 'error';
-		}
-	});	
+		reply:{required: '댓글은 필수 입력입니다.'}
+	},
+	submitHandler:function(){
+		$.ajax({
+			data : $('#reply_form').serialize(),
+			type : 'POST',
+			url : 'replyWrite',
+			success : function(data) {
+				// 댓글 작성 form 초기화
+				$('#reply_form').find('.form-group input, .form-group textarea').val(''); 
+			         
+				//댓글 목록 리스트 출력
+				getReplyList();
+			},
+			error: function(result, textStatus, jqXHR) {
+				window.location = 'error';
+			}
+		});	
+	}
 })
 
 
@@ -49,37 +64,38 @@ $(document).on('click','.password_popover', function(e) {
 
 // 3. 댓글 비밀 번호 확인
 $(document).on('click','.replyPasswordCheck_btn', function(e) {
-	$(this).parents('.popover').popover('hide');
-	var data = {
-					reply_num :  $('#reply_num').val(),            
-	  	    		reply_password: $('.popover #reply_password_chk').val(),
-	  	    		reply_option : $('#reply_option').val()
-				}
-			
-	$.ajax({
-		type : 'POST',
-		url : 'replyOption',
-	    contentType: 'application/json;charset=UTF-8',
-	    data: JSON.stringify(data),
-		success : function(data) {
-			// 댓글 삭제
-			if($('#reply_option').val() == 'delete'){
-				getReplyList();
-			
-			// 댓글 수정
-			}else{
-				window.open('replyUpdatePage', 'replyModify', 'width=450, height=450,resizable = yes'); 
-			} 
-		},
-		error: function(result, textStatus, jqXHR) {
-			if(result.status == 500){
-       			window.location = 'error';
-       		} else {
-       			swal(result.status + ' Error!', result.responseText +'!', 'error');
-       		}
-				
-		}
-	});
+	if($('.popover #reply_password_chk').val()!=''){
+		$(this).parents('.popover').popover('hide');
+		var data = {
+						reply_num :  $('#reply_num').val(),            
+		  	    		reply_password: $('.popover #reply_password_chk').val(),
+		  	    		reply_option : $('#reply_option').val()
+					}
+		$.ajax({
+			type : 'POST',
+			url : 'replyOption',
+		    contentType: 'application/json;charset=UTF-8',
+		    data: JSON.stringify(data),
+			success : function(data) {
+				// 댓글 삭제
+				if($('#reply_option').val() == 'delete'){
+					getReplyList();
+				// 댓글 수정
+				}else{
+					window.open('replyUpdatePage', 'replyModify', 'width=450, height=450, resizable=yes'); 
+				} 
+			},
+			error: function(result, textStatus, jqXHR) {
+				if(result.status == 500){
+	       			window.location = 'error';
+	       		} else {
+	       			swal(result.status + ' Error!', result.responseText +'!', 'error');
+	       		}
+			}
+		});
+	}else{
+		alert('비밀번호를 입력하세요.');
+	}
 });
 
 

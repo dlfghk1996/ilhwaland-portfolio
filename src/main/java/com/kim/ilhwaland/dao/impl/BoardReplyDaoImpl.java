@@ -49,7 +49,7 @@ public class BoardReplyDaoImpl implements BoardReplyDao{
 	@Override
 	public void deleteReply(BoardReply input) throws Exception {
 		int result = 0;
-		sqlSession.delete("BoardReplyMapper.deleteBoardReply",input);
+		result = sqlSession.delete("BoardReplyMapper.deleteBoardReply",input);
 		if(result == 0) {
 			throw new NullPointerException("댓글 삭제 쿼리 시도 중 에러 발생");
 		}
@@ -60,7 +60,7 @@ public class BoardReplyDaoImpl implements BoardReplyDao{
 	public void replyPwCheck(BoardReply input) throws Exception {
 		int result = 0;
 		result = sqlSession.selectOne("BoardReplyMapper.selectReplyPassword",input);
-		if(result > 0) {
+		if(result == 0) {
 			throw new BadRequestException();
 		}
 	}

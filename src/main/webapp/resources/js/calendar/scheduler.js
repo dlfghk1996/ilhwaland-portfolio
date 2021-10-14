@@ -46,31 +46,39 @@ $(document).ready(function(){
 
 
 	// 일정 추가 
-	$(document).on('click','#save-event',function(){
-        if($('#title').val() == null || $('#title').val() == '' || $('#event').val() == null || $('#event').val() == ''){
-        	 swal('일정 타이틀을 입력해주세요');
-        	 return false;
-        }
-        
-		$.ajax({
-			type: 'POST',
-			url:  'scheduler',
-			data: $('#add_form').serialize(), 
-			success: function(result,textStatus,jqXHR) {
-				swal('Success!','일정이 등록되었습니다 !', 'success');
+	$('#add_form').validate({
+		rules:{
+			title:{required: true},
+			event:{required: true,rangelength : [1,25]}
+		},
+		message:{
+			title:{required: '일정명은 필수 입력입니다.'},
+			event:{
+				required: '일정 내용은 필수 입력입니다.',
+				rangelength : '글자수는 25 까지 가능합니다.'
+			}
+		},
+		submitHandler:function(){
+			alert('hi');
+			$.ajax({
+				type: 'POST',
+				url:  'scheduler',
+				data: $('#add_form').serialize(), 
+				success: function(result,textStatus,jqXHR) {
+					swal('Success!','일정이 등록되었습니다 !', 'success');
 		        
-		        $('#add_modal').modal('hide');
-				// 이벤트 요소 추가
-				var start_date = moment(result.startDate).format('YYYY-MM-DD');
-		    	var end_date = moment(result.endDate).format('YYYY-MM-DD');
+		        	$('#add_modal').modal('hide');
+					// 이벤트 요소 추가
+					var start_date = moment(result.startDate).format('YYYY-MM-DD');
+		    		var end_date = moment(result.endDate).format('YYYY-MM-DD');
 		    	
-		    	// 이틀 이상 AllDay 일정인 경우 달력에 표기시 하루를 더해야 정상출력
-	            if(start_date != end_date){
-	            	end_date = moment(end_date,'YYYY-MM-DD').add(1,'days').toDate(); 
-	            	end_date = moment(end_date).format('YYYY-MM-DD');
-	            }
+		    		// 이틀 이상 AllDay 일정인 경우 달력에 표기시 하루를 더해야 정상출력
+	            	if(start_date != end_date){
+	            		end_date = moment(end_date,'YYYY-MM-DD').add(1,'days').toDate(); 
+	            		end_date = moment(end_date).format('YYYY-MM-DD');
+	            	}
 	                   
-		    	var new_event= [{ 
+		    		var new_event= [{ 
 		    				id:  result.id,
 			    			title: result.title, 
 			    			start: start_date, 
@@ -81,14 +89,14 @@ $(document).ready(function(){
 			    			category_num: result.scheduleCategory.id,
 			    			color : result.scheduleCategory.color
 		    			}];
-				calendar.addEventSource(new_event);
-	        },
-	        error: function(result, textStatus, jqXHR) {
-	        	swal(result.status + ' Error!', '등록을 실패하였습니다.!', 'error');
-	        }
-		});
+					calendar.addEventSource(new_event);
+	        	},
+	        	error: function(result, textStatus, jqXHR) {
+	        		swal(result.status + ' Error!', '등록을 실패하였습니다.!', 'error');
+	        	}
+			});
+		}
 	})
-	
 	
 	// 일정 추가시 카테고리 선택 (일정 추가 & 일정 수정시 발생)
 	$(document).on('click','.category_btn',function(){
@@ -131,20 +139,34 @@ $(document).ready(function(){
 	
 	
 	// 일정 수정
-	$('.modify_submit_btn').click(function(event){
-		$.ajax({
-			type: 'PUT',
-			url:  'scheduler',
-			contentType : 'application/json; charset=utf-8', 
-			data: JSON.stringify($('#modify_form').serializeObject()),
-			success: function(result, textStatus, jqXHR) {
-				location.reload();
-	        },
-	       	error: function(result, textStatus) {
-	       		swal(result.status + ' Error!', result.responseText +'!', 'error');
-	       	}
-		});
+	$('#modify_form').validate({
+		rules:{
+			title:{required: true},
+			event:{required: true,rangelength : [1,25]}
+		},
+		message:{
+			title:{required: '일정명은 필수 입력입니다.'},
+			event:{
+				required: '일정 내용은 필수 입력입니다.',
+				rangelength : '글자수는 25 까지 가능합니다.'
+			}
+		},
+		submitHandler:function(){
+			$.ajax({
+				type: 'PUT',
+				url:  'scheduler',
+				contentType : 'application/json; charset=utf-8', 
+				data: JSON.stringify($('#modify_form').serializeObject()),
+				success: function(result, textStatus, jqXHR) {
+					location.reload();
+		        },
+		       	error: function(result, textStatus) {
+		       		swal(result.status + ' Error!', result.responseText +'!', 'error');
+		       	}
+			});
+		}
 	})
+	
 	
 	
 	// 일정 삭제 

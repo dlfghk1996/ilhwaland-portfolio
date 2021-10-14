@@ -30,10 +30,10 @@
 					    			<input type="text" class="form-control" id="subject" name="subject" maxlength="32" value="${board.subject}">	
 					    		</div>
 					  		</div>
-					  		<textarea name="content" id="summernote" class="content">${board.content}</textarea>
+					  		<textarea name="content" id="summernote" class="content" required>${board.content}</textarea>
 							<div class="row">
 								<div class="col-md-1">
-									<button type="submit" class="btn btn-success">등록</button>
+									<input type="submit" class="btn btn-success" value="수정">
 								</div>
 							</div>
 					   </form>
@@ -47,6 +47,15 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script> <!-- summernote 플러그인 -->
 	<script src="${pageContext.request.contextPath}/resources/js/board/summernote.js"></script>
-
+	$('#board-form').validate({
+		rules:{
+			subject:{required: true},
+			content:{required: true}
+		},
+		message:{
+			subject:{required: '게시물명은 필수 입력입니다.'},
+			content:{required: '게시글은 필수 입력입니다.'}
+		}
+	})
 </body>
 </html>

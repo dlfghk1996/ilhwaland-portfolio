@@ -47,20 +47,24 @@
 		
 			// 카테고리 수정
 		    $('.category_modify_btn').click(function(){
-				$.ajax({
-					type: 'PUT',
-					url:  'scheduleCategory',
-					contentType: 'application/json; charset=utf-8', 
-					data: JSON.stringify($('#modify_form').serializeObject()),
-					success: function(result, textStatus, jqXHR) {
-						swal('', '수정 되었습니다', 'success');
-						opener.parent.location.reload();
-						window.close();
-			        },
-			       	error: function(jqXHR, status, error) {
-			       		swal(jqXHR.status + ' Error!', jqXHR.responseText +'!', 'error');
-			        }
-				});
+		    	if($('#categoryName').val() != ''){
+		    		$.ajax({
+						type: 'PUT',
+						url:  'scheduleCategory',
+						contentType: 'application/json; charset=utf-8', 
+						data: JSON.stringify($('#modify_form').serializeObject()),
+						success: function(result, textStatus, jqXHR) {
+							swal('', '수정 되었습니다', 'success');
+							opener.parent.location.reload();
+							window.close();
+				        },
+				       	error: function(jqXHR, status, error) {
+				       		swal(jqXHR.status + ' Error!', jqXHR.responseText +'!', 'error');
+				        }
+					});
+		    	}else {
+		    		alert('카테고리명을 입력해주세요.');
+		    	}
 		    })
 		});		
 	</script>

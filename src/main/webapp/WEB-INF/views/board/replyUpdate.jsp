@@ -21,10 +21,10 @@
 				</div>
 				<div class="wrap_content">
 					<label>내용</label>
-					<textarea style="resize: both;" name="reply"  id="reply" class="reply form-control" required></textarea>
+					<textarea style="resize: both;" name="reply" id="reply" class="reply form-control" required></textarea>
 				</div>	
 				<div class="wrap_btn">
-					<button type="button" class="btn btn_submit replyUpdate_btn">확인</button>
+					<input type="submit" class="btn btn_submit replyUpdate_btn" value="확인">
 					<button type="reset"  class="btn btn_reset">취소</button>
 				</div>
 			</fieldset>
@@ -34,6 +34,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script> <!-- alert 플러그인 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script> 
 <script type="text/javascript">
 	
 	/* 부모창에서 해당 댓글의 값을 가져온다. **/
@@ -48,20 +49,30 @@
 	$('#reply_writer_nickname').val(reply_writer_nickname);
 	$('#reply').val(reply);
 
-	$(document).on('click','.replyUpdate_btn', function(e) {
-		$.ajax({
-			data : $('#replyUpdate_form').serialize(),
-			type : 'POST',
-			url : 'replyUpdate',
-			success : function(data) {
-				window.parent.opener.getReplyList();
-				swal('수정되었습니다.');
-				window.self.close();
-			},
-			error: function(data) {
-				location.href = 'error';
-			}
-		});
+	$('#replyUpdate_form').validate({
+		rules:{
+			reply_writer_nickname:{required: true},
+			reply:{required: true}
+		},
+		message:{
+			reply_writer_nickname:{required: '닉네임은 필수 입력입니다.'},
+			reply:{required: '댓글은 필수 입력입니다.'}
+		},
+		submitHandler:function(){
+			$.ajax({
+				data : $('#replyUpdate_form').serialize(),
+				type : 'POST',
+				url : 'replyUpdate',
+				success : function(data) {
+					window.parent.opener.getReplyList();
+					swal('수정되었습니다.');
+					window.self.close();
+				},
+				error: function(data) {
+					location.href = 'error';
+				}
+			});
+		}
 	})
 </script>
 </body>

@@ -118,18 +118,9 @@
 										</div>
 							        </div>
 							        <!-- category option -->
-							        <div class="panel-group col-md-12" id="accordion" role="tablist" aria-multiselectable="true">
+							        <div class="panel-group col-md-12">
 								       	<div class="panel panel-default">
-						                    <div class="panel-heading" role="tab">
-						                    	<h4 class="panel-title">
-						                        	<a data-toggle="collapse" data-parent="#accordion" href="#collapse1" class="accordion">
-						                        		<span class="glyphicon glyphicon-th-list"></span>
-						                        		 Category
-						                        		<i class="fas fa-arrow-circle-down" style="position:absolute; right: 0;"></i>
-						                        	</a>
-						                        </h4>
-						                    </div>
-		                    				<div id="collapse1" class="panel-collapse collapse" role="tabpanel">
+		                    				<div id="collapse1" class="panel-collapse collapse">
 		                    					<div class="panel-body">
 		                    						<c:forEach var="category_list" items="${category_list}">
 		                    							<button type="button" class="btn btn-primary btn-rounded category_btn" value="${category_list.id}">
@@ -143,14 +134,14 @@
 							        <div class="form-group col-md-6">
 							        	<div class="wrap-input">
 											<span class="label-input">Message</span>
-											<textarea class="input100" name="event" id="event" placeholder="상세 내용을 적어주세요."></textarea>
+											<textarea class="input100" name="event" id="event" placeholder="상세 내용을 적어주세요." maxlength="25"></textarea>
 										</div>
 							        </div>
+							        <div>
+							        	<input type="submit" class="btn btn-primary save_btn" id="save-event" value="등록">
+					      			</div>
 					      		</form>  
 					      	</div>
-						    <div class="modal-footer">
-						        <button type="button" class="btn btn-primary save_btn" id="save-event">Save</button>
-						    </div>
 				    	</div>  <!-- modal content endTag -->
   					</div>
 				</div> <!-- add_modal endTag -->
@@ -263,11 +254,11 @@
 											<textarea class="event" name="event" placeholder="상세 내용을 적어주세요."></textarea>
 										</div>
 							        </div>
+							        <div>
+						    			<input type="submit" class="btn btn-default modify_submit_btn" value="OK">
+						    		</div>
 					      		</form>  
 					      	</div>
-						    <div class="modal-footer">
-						    	<button type="button" class="btn btn-default modify_submit_btn">OK</button>
-						    </div>
 				    	</div>  <!-- modal-content endTag -->
   					</div> <!-- modal-dialog endTag -->
 				</div> <!-- modify_modal endTag -->
@@ -286,9 +277,10 @@
 	<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.js"></script> <!-- fullcalendar 플러그인 -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script> <!-- alert 플러그인 -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.3/js/bootstrap-colorpicker.js"></script> <!--colorpicker 플러그인  -->
-	<script src="${pageContext.request.contextPath}/resources/js/calendar/jQuery_serializeObject.js"></script>
 	<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>  <!-- Tooltip 플러그인  -->
 	<script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>      <!-- Tooltip 플러그인  -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/calendar/jQuery_serializeObject.js"></script>
 	<script type="text/javascript">
 	
 	var calendar;
@@ -322,8 +314,8 @@
 		        	text: '일정추가',
 		        	click: function() {
 		        		$('#add_modal').modal('show');
-		        	}
-		      	}
+		            }	
+		        }
 	    	},
 	    	/** 일정 클릭시 호출, 해당일정 상세보기 */
 	    	eventClick: function(info) {  

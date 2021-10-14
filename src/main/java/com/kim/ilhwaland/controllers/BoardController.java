@@ -24,14 +24,14 @@ import com.kim.ilhwaland.dto.BoardReply;
 import com.kim.ilhwaland.dto.FileDetail;
 import com.kim.ilhwaland.helper.BadRequestException;
 import com.kim.ilhwaland.helper.WebHelpler;
-import com.kim.ilhwaland.helper.file.FileUtil;
+import com.kim.ilhwaland.helper.file.FileUtil_orgin;
 
 
 @Controller
 public class BoardController {
 	
 	@Autowired
-	private FileUtil fileUtil;
+	private FileUtil_orgin fileUtil;
 	
 	@Autowired
 	private BoardDao boardDao;
@@ -133,8 +133,8 @@ public class BoardController {
 	     	/* 3. 경로 반환
 	     	      path : 프로젝트 경로 + resources\\img\\upload\\board\\summernote\\currentTime */
 	     	FileDetail fileDetail = fileDetails.get(0);
-			path = fileDetail.getFilePath()+"\\"+fileDetail.getFile_name(); 
-			
+			// path = fileDetail.getFilePath()+"\\"+fileDetail.getFile_name(); 
+	     	path = fileDetail.getFilePath()+"/"+fileDetail.getFile_name(); 
 		} catch (IOException e) {
 			e.printStackTrace();
 			throw new IOException("파일업로드중 발생");
@@ -250,8 +250,10 @@ public class BoardController {
 				boardReplyDao.deleteReply(boardReply);
 			}	
 		} catch (BadRequestException e1) {
+			System.out.println(e1.getLocalizedMessage());
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("잘못된 요청입니다.");
 		} catch (Exception e) {
+			System.out.println(e.getLocalizedMessage());
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return new ResponseEntity<>(HttpStatus.OK);

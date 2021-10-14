@@ -61,7 +61,7 @@
 					  			<label for="reply">Comment:</label>
 					  			<div>
 					  				<textarea class="form-control" rows="3" cols="30" id="reply" name="reply" placeholder="댓글을 입력하세요" required></textarea>
-					  				<button type="button" class="btn btn-default" id="reply_btn">댓글 등록</button>
+					  				<input type="submit" class="btn btn-default" id="reply_btn" value="등록">
 					  			</div>
 							</div>
 						</form>
@@ -115,6 +115,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script> <!-- alert 플러그인 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script> 
 	<script src="https://kit.fontawesome.com/58a77f3783.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/board/boardView.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/board/boardReply.js"></script>

@@ -172,7 +172,12 @@
 		// 해당 위치의 날씨를 기반으로 한 세차 추천 팝업
 		function showWeatherServicePopup(){ 
 			var popup = window.open('weatherService_popup','weatherService','width=470, height=490, top=10, left=10');
-			popup.focus();
+			if(!popup){
+				alert('팝업창을 허용해주세요.');
+			}else{
+				popup.close();
+				window.open('weatherService_popup','weatherService','width=470, height=490, top=10, left=10');
+			}
 		}
 		
 		// 주소찾기 API
@@ -186,9 +191,9 @@
 		          	var addr='';
 		            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
 		                addr = data.roadAddress;
-		            
-		            } else { 							 // 사용자가 지번 주소를 선택했을 경우
-		                addr = data.jibunAddress;
+		            	
+		            } else { 			
+		            	addr = data.jibunAddress;
 		            }
 		
 		            $('[name=address]').val(addr);
@@ -239,7 +244,7 @@
 		function showError(error) {
 			switch(error.code) {
 			    case error.PERMISSION_DENIED:
-			    	swal('Geolocation API의 사용 요청을 거부했습니다.');
+			    	swal('현재위치 사용 요청을 허용해주세요!');
 			      	break;
 			    case error.POSITION_UNAVAILABLE:
 			    	swal('해당 위치정보를 사용할 수 없습니다.');

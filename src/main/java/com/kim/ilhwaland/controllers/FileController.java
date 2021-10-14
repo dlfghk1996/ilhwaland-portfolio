@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.kim.ilhwaland.dao.FileDao;
 import com.kim.ilhwaland.dto.FileDetail;
 import com.kim.ilhwaland.helper.file.FileApi;
-import com.kim.ilhwaland.helper.file.FileUtil;
+import com.kim.ilhwaland.helper.file.FileUtil_orgin;
 import com.kim.ilhwaland.helper.file.FileViewHelper;
 import com.kim.ilhwaland.helper.file.SheetHelper;
 
@@ -29,7 +29,7 @@ public class FileController {
 	private FileDao fileDao;
 	
 	@Autowired
-	private FileUtil fileUtil;
+	private FileUtil_orgin fileUtil;
 	
 	@Autowired
 	private FileApi fileApi;
@@ -112,8 +112,8 @@ public class FileController {
 		FileDetail fileDetail = fileDao.getUploadFile(Integer.parseInt(file_num)); 
 
 		// 2. 요청한 파일에 접근 하기 위해, DB에서 가져온 상세정보를 조합하여, 파일경로 형식에 맞게 구성한다. 
-		String filePath = fileDetail.getFilePath() + "\\" +fileDetail.getFile_name();
-		
+		//String filePath = fileDetail.getFilePath() + "\\" +fileDetail.getFile_name();
+		String filePath = fileDetail.getFilePath() + "/" +fileDetail.getFile_name();
 		// 3. 파일 타입 마다 읽는 방식이 다르기때문에, 파일 타입을 구분자로 하여 기능을 구현하기위한 구분자 변수에 파일타입명 할당.
 		String filetype = fileDetail.getFiletype();
 		
@@ -139,14 +139,16 @@ public class FileController {
 				
 			// pdf 파일
 			case "pdf" :
-				filePath = "fileboard/" + fileDetail.getRegister_date() + "\\" + fileDetail.getFile_name() + ".pdf";
+				// filePath = "fileboard\\" + fileDetail.getRegister_date() + "\\" + fileDetail.getFile_name() + ".pdf";
+				filePath = "fileboard/" + fileDetail.getRegister_date() + "/" + fileDetail.getFile_name() + ".pdf";
 				fileViewHelper.setSourcePath(filePath);
 				
 				break;
 				
 			// img 파일 
 			case "jpg": case "gif" : case "png" : case "bmp": 
-				filePath = "fileboard/" + fileDetail.getRegister_date() + "\\" + fileDetail.getFile_name();
+				//filePath = "fileboard\\" + fileDetail.getRegister_date() + "\\" + fileDetail.getFile_name();
+				filePath = "fileboard/" + fileDetail.getRegister_date() + "/" + fileDetail.getFile_name();
 				String imgHtml = "<img src='"+filePath+"'width='100%'/>";
 				fileViewHelper.setSourcePath(imgHtml);
 				break;

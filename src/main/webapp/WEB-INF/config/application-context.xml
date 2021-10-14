@@ -28,7 +28,7 @@
 	<!-- Connection Pool DataSource -->
    	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
       	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-      	<property name="url" value="jdbc:oracle:thin:@192.168.219.116.43:1521:xe" />
+      	<property name="url" value="jdbc:oracle:thin:@172.30.1.49:1521:xe" />
       	<property name="username" value="C##ILHWALAND" />
       	<property name="password" value="0819" />
   	</bean>

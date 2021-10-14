@@ -14,7 +14,7 @@ public interface ScheduleCategoryRepository extends JpaRepository<ScheduleCatego
 	Optional<ScheduleCategory> findByCategoryName(String input);
 
 	// 전체 카테고리 리스트 
-	List<ScheduleCategory> findAllByMemberNumOrId(Integer input,Integer input2);
+	List<ScheduleCategory> findAllByMemberNumOrIdOrderById(Integer input,Integer input2);
 	
 	// 중복 카테고리 유무 확인
 	@Query(nativeQuery = true, value="select count(sc.category_num) FROM schedulecategory sc WHERE sc.member_num = :member_num AND sc.category_name = :category_name ORDER BY sc.category_num")

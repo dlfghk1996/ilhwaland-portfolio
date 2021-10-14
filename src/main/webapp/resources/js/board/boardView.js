@@ -17,35 +17,38 @@ $(function(){
 	
 	// 2. 게시글 삭제 or 수정
 	$('.boardPasswordCheck_btn').click(function() {
-		var checkType = $(this).attr('value');     // Type : update OR delete
-		var data = {
-				password : $('.password').val(),            
-				checkType : checkType,
-				board_num : boardnum
-			}
-		$.ajax({
-			type : 'POST',
-	    	contentType: 'application/json;charset=UTF-8',
-	    	data: JSON.stringify(data),
-			url : 'passwordCheck',
-			success : function(data) {
-				// 게시글 삭제
-				if(checkType == 'delete'){
-					location.href='board';
-				// 게시글 수정
-				}else{
-					modifyBoard();
+		if($('.password').val()!=''){
+			var checkType = $(this).attr('value');     // Type : update OR delete
+			var data = {
+					password : $('.password').val(),            
+					checkType : checkType,
+					board_num : boardnum
+					}
+			$.ajax({
+				type : 'POST',
+		    	contentType: 'application/json;charset=UTF-8',
+		    	data: JSON.stringify(data),
+				url : 'passwordCheck',
+				success : function(data) {
+					// 게시글 삭제
+					if(checkType == 'delete'){
+						location.href='board';
+					// 게시글 수정
+					}else{
+						modifyBoard();
+					}
+				},
+				error: function(result, textStatus, jqXHR) {
+					if(result.status == 500){
+		       			window.location = 'error';
+		       		} else {
+		       			swal(result.status + ' Error!', result.responseText +'!', 'error');
+		       		}
 				}
-			},
-			error: function(result, textStatus, jqXHR) {
-				if(result.status == 500){
-	       			window.location = 'error';
-	       		} else {
-	       			swal(result.status + ' Error!', result.responseText +'!', 'error');
-	       		}
-				
-			}
-		});
+			});
+		}else {
+			alert('비밀번호를 입력하세요.');
+		}
 	});
 	
 	
