@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.kim.ilhwaland.dao.FileDao;
 import com.kim.ilhwaland.dto.FileDetail;
 import com.kim.ilhwaland.helper.file.FileApi;
-import com.kim.ilhwaland.helper.file.FileUtil_orgin;
+import com.kim.ilhwaland.helper.file.FileUtil;
 import com.kim.ilhwaland.helper.file.FileViewHelper;
 import com.kim.ilhwaland.helper.file.SheetHelper;
 
@@ -29,7 +29,7 @@ public class FileController {
 	private FileDao fileDao;
 	
 	@Autowired
-	private FileUtil_orgin fileUtil;
+	private FileUtil fileUtil;
 	
 	@Autowired
 	private FileApi fileApi;

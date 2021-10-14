@@ -24,14 +24,14 @@ import com.kim.ilhwaland.dto.BoardReply;
 import com.kim.ilhwaland.dto.FileDetail;
 import com.kim.ilhwaland.helper.BadRequestException;
 import com.kim.ilhwaland.helper.WebHelpler;
-import com.kim.ilhwaland.helper.file.FileUtil_orgin;
+import com.kim.ilhwaland.helper.file.FileUtil;
 
 
 @Controller
 public class BoardController {
 	
 	@Autowired
-	private FileUtil_orgin fileUtil;
+	private FileUtil fileUtil;
 	
 	@Autowired
 	private BoardDao boardDao;
