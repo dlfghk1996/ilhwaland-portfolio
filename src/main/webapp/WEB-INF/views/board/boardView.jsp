@@ -26,7 +26,7 @@
 						<div class="panel-heading">
 							<h3 style="padding-bottom: 20px;">${board.subject}</h3>
 				 			<div class="contentInfo1">
-				 				<span> 작성자  ${board.writer}</span>
+				 				<span> 작성자  ${board.writer_id}</span>
 				 				<span> &nbsp; | &nbsp; ${board.register_date}</span>
 				 			</div>
 				 			<div class="contentInfo2">

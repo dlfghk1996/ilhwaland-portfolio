@@ -332,6 +332,7 @@
 	    	},
 	    	/** 이벤트 1개가 달력에 render 될 때 마다 호출된다. 이벤트 데이터가 변경되면 다시 호출되지 않는다. == eventrender */
 	    	eventDidMount: function(eventObj) { 
+	    		
 	    		// rendering 된 이벤트에서 상세 내용 추출
 	    		var event_content = eventObj.event._def.extendedProps.event_detail;
 	    		// rendering 된 이벤트에서 'category_num' 추출
@@ -350,14 +351,10 @@
     	    
 	    		// 3. checked 된 카테고리의 일정만, 보여준다.
 	    		$("input[type=checkbox][name=category]:checked").each(function() {
-    				
  	 	    		 //  checked Checkbox의 value
     				 var checkCategory = this.value;
- 	 	    		 
- 	 	    		 // 배열에서 지정된 요소를 찾을 수 있는 첫 번째 인덱스를 반환하고 존재하지 않으면 -1을 반환하고 0과 비교하여 boolean 타입으로 'result' 변수에 탐색 결과를 저장한다.
-    				 var result = checkCategory.indexOf(event_category_num) >= 0;
-
-    				 if(!result){
+					 
+    				 if(checkCategory != event_category_num){
  	 	    			 eventObj.event.setProp('display','none');
  	 	    		 } else {
  	 	    			 eventObj.event.setProp('display','block');
